@@ -1,6 +1,6 @@
 language: java
 script:
-        - mvn package
-        - mvn sonar:sonar -Dsonar.projectKey=GardenShare -Dsonar.organization=gardenshare -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=$SONAR_KEY
+        - ./mvnw package
+        - ./mvnw sonar:sonar -Dsonar.projectKey=GardenShare -Dsonar.organization=gardenshare -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=$SONAR_KEY
 notifications:
         slack: csc307group:r3whK2mx6xWyRs1UhXkuOFk5
