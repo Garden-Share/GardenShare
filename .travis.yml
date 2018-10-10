@@ -1,6 +1,11 @@
 language: java
+services:
+        - docker
 script:
         - ./mvnw package
         - ./mvnw sonar:sonar -Dsonar.projectKey=GardenShare -Dsonar.organization=gardenshare -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=$SONAR_KEY
+        - docker build . -t fuckthisshituo/garden-share:latest
+        - docker login fuckthisshituo -p $DOCKER_PASS
+        - docker push fuckthisshituo/garden-share:latest
 notifications:
         slack: csc307group:r3whK2mx6xWyRs1UhXkuOFk5
