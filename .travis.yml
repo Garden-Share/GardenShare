@@ -4,7 +4,7 @@ services:
 script:
         - ./mvnw package
         - ./mvnw sonar:sonar -Dsonar.projectKey=GardenShare -Dsonar.organization=gardenshare -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=$SONAR_KEY
-        - docker build . -t fuckthisshituo/garden-share:latest
+        - docker build . -e DB_PASSWORD="$DB_PASSWORD" -t fuckthisshituo/garden-share:latest
         - docker login -u fuckthisshituo -p $DOCKER_PASS
         - docker push fuckthisshituo/garden-share:latest
 notifications:

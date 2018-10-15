@@ -21,8 +21,8 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<java.version>1.8</java.version>
-	</properties>
+		<java.version>1.8</java.version>                                      
+    </properties>
 
 	<dependencies>
 		<dependency>
@@ -56,6 +56,25 @@
 		<dependency>
 			<groupId>org.thymeleaf.extras</groupId>
 			<artifactId>thymeleaf-extras-springsecurity4</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+		</dependency>
+		<dependency>
+	        <groupId>javax.xml.bind</groupId>
+	        <artifactId>jaxb-api</artifactId>
+		</dependency>
+		<dependency>
+		    <!-- update Hibernate dependency on Javassist
+		          to 3.23.1 for Java 11 compatibility -->
+		   <groupId>org.javassist</groupId>
+		  <artifactId>javassist</artifactId>
+		    <version>3.23.1-GA</version>
 		</dependency>
 	</dependencies>
 
