@@ -2,6 +2,8 @@ language: java
 services:
         - docker
         - mysql
+before_install:
+        - mysql -u root --password="" < travis/setup_travis.sql
 script:
         - ./mvnw package
         - ./mvnw sonar:sonar -Dsonar.projectKey=GardenShare -Dsonar.organization=gardenshare -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=$SONAR_KEY
