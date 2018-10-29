@@ -12,4 +12,8 @@ public class Listing {
 
     String fruitType;
 
+    public String toString() {
+        return "<Listing "+id+" of type "+fruitType+">";
+    }
+
 }

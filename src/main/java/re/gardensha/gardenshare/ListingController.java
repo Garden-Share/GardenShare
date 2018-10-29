@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -16,6 +17,7 @@ public class ListingController {
     @Autowired
     private ListingRepository listingRepository;
 
+
 	@GetMapping(path="/listing")
 	public Listing getListing(@RequestParam(value="id") int id, HttpServletResponse res) throws IOException {
         Optional<Listing> listing = listingRepository.findById(id);
@@ -24,6 +26,14 @@ public class ListingController {
         }
         res.sendError(404, "Listing with id "+id+" not found");
         return null;
-	}
+    }
+    
+    @PostMapping(path="/listing/new")
+    public Listing createListing(@RequestParam(value="type") String type){
+        Listing newListing = new Listing();
+        newListing.fruitType = type;
+        listingRepository.save(newListing);
+        return newListing;
+    }
 	
 }
