@@ -1,10 +1,63 @@
 <!DOCTYPE html>
-<html>
-   <head>
-      <meta charset = "ISO-8859-1">
-      <title>Insert title here</title>
-   </head>
-   <body>
-      <a href = "user">Click here to Google Login</a>
-   </body>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+    <head th:replace="fragments :: head">
+        <meta charset="UTF-8" />
+        <style>
+        @media (min-width: 980px) { body { padding-top: 75px; } }
+        </style>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" 
+              integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous" />
+        <title th:text="${title}">GardenShare</title>
+    </head>
+
+    <body>
+        <nav th:replace="fragments :: nav" class="navbar bg-dark navbar-dark fixed-top navbar-expand-sm">
+            <ul class="navbar-nav">
+                <a class="navbar-brand" href="#">GardenShare</a>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Test</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Test</a>
+                </li>
+            </ul>
+            
+            <ul class="navbar-nav ml-auto mr-5">
+                <li class="nav-item">
+                    <a class="nav-link" href="#" th:unless="${username}">Sign In</a>
+                </li>
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown" th:text="${username}">
+                    Username
+                  </a>
+                  <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">My Profile</a>
+                    <a class="dropdown-item" href="#">My Listings</a>
+                    <a class="dropdown-item" href="#">My Reviews</a>
+                    <a class="dropdown-item" href="#">My Conversations</a>
+                    <div class="dropdown-divider text-"></div> 
+                    <a class="dropdown-item" href="#">Sign Out</a>
+                  </div>
+                </li>
+                <li class="nav-item"><span class="nav-item text-dark">aa</span></li>
+            </ul>
+        </nav>
+        
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col  text-center">
+                    <a href = "user">Click here to Google Login</a>
+                </div>
+            </div>
+        </div>
+        <div>
+            <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" 
+                    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" 
+                    integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" 
+                    integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+        </div>
+    </body>
+
 </html> 
