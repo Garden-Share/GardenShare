@@ -1,6 +1,22 @@
 [![Build Status](https://travis-ci.org/Garden-Share/GardenShare.svg?branch=master)](https://travis-ci.org/Garden-Share/GardenShare)
 
 
+MySQL Setup
+=====
+
+1. Download and Install Mysql server and a mysql client
+
+2. Start the server
+
+3. Connect as root user (On unix you have to connect as unix root user) `mysql -u root`
+
+4. Create a new user for gardenshare `GRANT ALL PRIVILEGES ON *.* to 'gardenshare'@'localhost' IDENTIFIED BY 'somepassword';`
+
+5. `FLUSH PRIVILEGES;`
+
+6. Create the database `CREATE DATABASE gardenshare;`
+
+
 How to build
 =====
 
