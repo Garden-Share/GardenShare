@@ -8,7 +8,7 @@ import javax.persistence.Id;
 public class Listing {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-    private Integer id;
+    public Integer id;
 
     String fruitType;
 

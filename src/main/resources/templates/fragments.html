@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
-    <head th:replace="fragments :: head">
+    <head th:fragments="head">
         <meta charset="UTF-8" />
         <style>
         @media (min-width: 980px) { body { padding-top: 75px; } }
@@ -11,7 +11,7 @@
     </head>
 
     <body>
-        <nav th:replace="fragments :: nav" class="navbar bg-dark navbar-dark fixed-top navbar-expand-sm">
+        <nav th:fragments="nav" class="navbar bg-dark navbar-dark fixed-top navbar-expand-sm">
             <ul class="navbar-nav">
                 <a class="navbar-brand" href="#">GardenShare</a>
                 <li class="nav-item">
@@ -43,13 +43,7 @@
             </ul>
         </nav>
         
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col  text-center">
-                    <a href = "user">Click here to Google Login</a>
-                </div>
-            </div>
-        </div>
+      
         <div>
             <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" 
                     integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

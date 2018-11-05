@@ -10,11 +10,13 @@ MySQL Setup
 
 3. Connect as root user (On unix you have to connect as unix root user) `mysql -u root`
 
-4. Create a new user for gardenshare `GRANT ALL PRIVILEGES ON *.* to 'gardenshare'@'localhost' IDENTIFIED BY 'somepassword';`
+4. `CREATE USER 'gardenshare'@'localhost' IDENTIFIED BY 'somepassword'`
 
-5. `FLUSH PRIVILEGES;`
+5. Create a new user for gardenshare `GRANT ALL PRIVILEGES ON *.* to 'gardenshare'@'localhost';`
 
-6. Create the database `CREATE DATABASE gardenshare;`
+6. `FLUSH PRIVILEGES;`
+
+7. Create the database `CREATE DATABASE gardenshare;`
 
 
 How to build
