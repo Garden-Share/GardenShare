@@ -10,7 +10,7 @@ public class Listing {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Integer 	id;
-	private String	 	product;
+	private String	 	fruitType;
 	private Integer 	weight;
 	private Integer 	count;
 	private boolean 	ended;
@@ -18,7 +18,7 @@ public class Listing {
 	private Time 		end_time;
 
     public String toString() {
-        return "<Listing "+id+" of type "+product+">";
+        return "<Listing "+id+" of type "+fruitType+">";
     }
 
 }
