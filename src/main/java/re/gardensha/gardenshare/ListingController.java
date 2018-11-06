@@ -28,10 +28,6 @@ public class ListingController {
         return null;
     }
 
-    @GetMapping(path="/listing")
-	public Listing getListing(@RequestParam(value="type") String type, HttpServletResponse res) throws IOException {
-        return null;
-    }
     
     @PostMapping(path="/listing/new")
     public Listing createListing(@RequestParam(value="type") String type){
