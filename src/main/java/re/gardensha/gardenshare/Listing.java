@@ -9,8 +9,8 @@ import java.sql.Time;
 public class Listing {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-    private Integer 	id;
-    private String	 	fruitType;
+    public Integer 	id;
+    public String	 	fruitType;
 	private Integer 	weight;
 	private Integer 	count;
 	private boolean 	ended;
