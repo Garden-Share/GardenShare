@@ -10,12 +10,20 @@ public class Listing {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     public Integer 	id;
-    public String	 	fruitType;
+    private String	 	fruitType;
 	private Integer 	weight;
 	private Integer 	count;
 	private boolean 	ended;
 	private Time 		start_time;
-	private Time 		end_time;
+    private Time 		end_time;
+    
+    public Listing(){
+        
+    }
+
+    public Listing(String type){
+        this.fruitType = type;
+    }
 
     public String toString() {
         return "<Listing "+id+" of type "+fruitType+">";

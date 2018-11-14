@@ -22,6 +22,7 @@ public class ListingController {
 	public Listing getListing(@RequestParam(value="id") int id, HttpServletResponse res) throws IOException {
         Optional<Listing> listing = listingRepository.findById(id);
         if (listing.isPresent()) {
+            System.out.println("Retrieved listing "+listing.get().toString());
             return listing.get();
         }
         res.sendError(404, "Listing with id "+id+" not found");
@@ -31,8 +32,7 @@ public class ListingController {
     
     @PostMapping(path="/listing/new")
     public Listing createListing(@RequestParam(value="type") String type){
-        Listing newListing = new Listing();
-        newListing.fruitType = type;
+        Listing newListing = new Listing(type);
         listingRepository.save(newListing);
         System.out.println(newListing);
         System.out.println(newListing.id);
