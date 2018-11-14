@@ -12,7 +12,18 @@ public class User {
 
     private String name;
 
-    private String email;
+	private String email;
+
+	private String oauthId;
+	
+
+	public User(String oauthId){
+		this.oauthId = oauthId;
+	}
+
+	public User(){
+		
+	}
 
 	public Integer getId() {
 		return id;
