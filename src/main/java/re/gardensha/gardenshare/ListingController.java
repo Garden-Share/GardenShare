@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class ListingController {
@@ -19,10 +20,12 @@ public class ListingController {
 
 
 	@GetMapping(path="/listing")
-	public Listing getListing(@RequestParam(value="id") int id, HttpServletResponse res) throws IOException {
+	public ModelAndView getListing(@RequestParam(value="id") int id, HttpServletResponse res) throws IOException {
+        ModelAndView result = new ModelAndView("listing");
         Optional<Listing> listing = listingRepository.findById(id);
         if (listing.isPresent()) {
-            return listing.get();
+            result.addObject("listing", listing.get());
+            return result;
         }
         res.sendError(404, "Listing with id "+id+" not found");
         return null;
@@ -30,10 +33,12 @@ public class ListingController {
 
     
     @PostMapping(path="/listing/new")
-    public Listing createListing(@RequestParam(value="type") String type){
+    public ModelAndView createListing(@RequestParam(value="type") String type){
+        ModelAndView result = new ModelAndView("listing/new");
         Listing newListing = new Listing(type);
         listingRepository.save(newListing);
-        return newListing;
+        result.addObject("listing", newListing);
+        return result;
     }
 	
 }
