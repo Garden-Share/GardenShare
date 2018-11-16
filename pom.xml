@@ -9,7 +9,7 @@
 	<packaging>jar</packaging>
 
 	<name>gardenshare</name>
-	<description>Demo project for Spring Boot</description>
+	<description>A marketplace for home grown goods</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
