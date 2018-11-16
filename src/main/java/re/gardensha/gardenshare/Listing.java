@@ -14,8 +14,8 @@ public class Listing {
 	private Integer 	weight;
 	private Integer 	count;
 	private boolean 	ended;
-	private Time 		start_time;
-    private Time 		end_time;
+	private Time 		startTime;
+    private Time 		endTime;
     
     public Listing(){
         

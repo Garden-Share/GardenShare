@@ -18,13 +18,14 @@ public class ListingController {
     @Autowired
     private ListingRepository listingRepository;
 
+    private static String listingObjectName = "listing";
 
 	@GetMapping(path="/listing")
 	public ModelAndView getListing(@RequestParam(value="id") int id, HttpServletResponse res) throws IOException {
         ModelAndView result = new ModelAndView("listing");
         Optional<Listing> listing = listingRepository.findById(id);
         if (listing.isPresent()) {
-            result.addObject("listing", listing.get());
+            result.addObject(listingObjectName, listing.get());
             return result;
         }
         res.sendError(404, "Listing with id "+id+" not found");
@@ -37,7 +38,7 @@ public class ListingController {
         ModelAndView result = new ModelAndView("listing/new");
         Listing newListing = new Listing(type);
         listingRepository.save(newListing);
-        result.addObject("listing", newListing);
+        result.addObject(listingObjectName, newListing);
         return result;
     }
 	

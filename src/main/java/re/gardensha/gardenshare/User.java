@@ -14,7 +14,7 @@ public class User {
 
 	private String email;
 
-	private String oauthId;
+	public String oauthId;
 	
 
 	public User(String oauthId){
