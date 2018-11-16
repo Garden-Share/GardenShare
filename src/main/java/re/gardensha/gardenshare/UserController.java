@@ -1,5 +1,6 @@
 package re.gardensha.gardenshare;
 
+import java.io.IOException;
 import java.security.Principal;
 import java.util.List;
 
@@ -17,7 +18,7 @@ public class UserController {
     private UserRepository userRepo;
 
     @RequestMapping(value = "/user")
-    public ModelAndView user(Principal principal, HttpServletResponse res) throws Exception {
+    public ModelAndView user(Principal principal, HttpServletResponse res) throws IOException {
         ModelAndView result = new ModelAndView("user");
         List<User> possibleMatching = userRepo.findUserByOauthId(principal.getName());
         if (possibleMatching.isEmpty()) {
