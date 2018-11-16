@@ -14,7 +14,7 @@ public class User {
 
 	private String email;
 
-	public String oauthId;
+	private String oauthId;
 	
 
 	public User(String oauthId){
@@ -47,6 +47,10 @@ public class User {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public String getOAuthId(){
+		return oauthId;
 	}
 
 
