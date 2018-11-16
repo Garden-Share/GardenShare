@@ -1,7 +1,10 @@
 package re.gardensha.gardenshare;
 
 import java.io.IOException;
+import java.sql.Time;
+import java.text.DateFormat;
 import java.util.Optional;
+import java.text.ParseException;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -34,12 +37,31 @@ public class ListingController {
 
     
     @PostMapping(path="/listing/new")
-    public ModelAndView createListing(@RequestParam(value="type") String type){
+    public ModelAndView createListing(@RequestParam(value="type") String type,
+                                      @RequestParam(value="weight") float weight,
+                                      @RequestParam(value="weightUnit") String weightUnit,
+                                      @RequestParam(value="count") Optional<Integer> count,
+                                      @RequestParam(value="start") Optional<String> startTimeStamp,
+                                      @RequestParam(value="end") String endTimeStamp) throws InvalidListingException {
         ModelAndView result = new ModelAndView("listing/new");
-        Listing newListing = new Listing(type);
+        Time start, end;
+        try {
+            if (startTimeStamp.isPresent()){
+                long startMillis = DateFormat.getInstance().parse(startTimeStamp.get()).getTime();
+                start = new Time(startMillis);
+            }else{
+                start = new Time(System.currentTimeMillis());
+            }
+            long endMillis = DateFormat.getInstance().parse(endTimeStamp).getTime();
+            end = new Time(endMillis);
+        }catch(ParseException exception){
+            throw new InvalidListingException("Start or end date had an invalid date format");
+        }
+        Listing newListing = new Listing(type, weight, weightUnit, count.orElse(-1), start, end);
         listingRepository.save(newListing);
         result.addObject(listingObjectName, newListing);
         return result;
     }
+
 	
 }

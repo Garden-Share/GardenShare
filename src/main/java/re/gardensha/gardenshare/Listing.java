@@ -10,10 +10,11 @@ public class Listing {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     public Integer 	id;
-    private String	 	fruitType;
-	private Integer 	weight;
-	private Integer 	count;
-	private boolean 	ended;
+    private String	 	fruitType = "";
+    private Float 	    weight = 0f;
+    private String      weightUnit = "lbs";
+	private Integer 	count = 0;
+	private Boolean 	ended = false;
 	private Time 		startTime;
     private Time 		endTime;
     
@@ -21,15 +22,29 @@ public class Listing {
         
     }
 
-    public Listing(String type){
+    public Listing(String type,
+                   float weight,
+                   String weightUnit,
+                   int count,
+                   Time startTime,
+                   Time endTime){
         this.fruitType = type;
+        this.weight = weight;
+        this.weightUnit = weightUnit;
+        this.count = count;
+        this.startTime = startTime;
+        this.endTime = endTime;
     }
 
     public String toString() {
         return "<Listing "+id+" of type "+fruitType+">";
     }
 
-    public int getWeight(){
+    public String getWeightString(){
+        return weight + " " + weightUnit;
+    }
+
+    public float getWeight(){
         return weight;
     }
 
