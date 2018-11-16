@@ -27,7 +27,7 @@ public class IndexTest {
     }
 
 	@Autowired
-	private HealthController controller;
+	private IndexController controller;
 	
 	@Test
 	public void contextLoads() throws Exception {
