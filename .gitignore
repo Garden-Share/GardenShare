@@ -27,3 +27,6 @@
 
 # Secrets
 secrets/*
+
+# Editor files
+.vscode/*
