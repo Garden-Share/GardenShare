@@ -40,6 +40,10 @@ public class Listing {
         return "<Listing "+id+" of type "+fruitType+">";
     }
 
+    public String getType(){
+        return fruitType;
+    }
+
     public String getWeightString(){
         return weight + " " + weightUnit;
     }
