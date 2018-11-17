@@ -8,9 +8,7 @@
         </nav>
         
 
-        <form method="POST" action="/listing/new">
-            <input name="type" />
-            <input type="submit" />
+        <form th:replace="fragments/listing_form::form">
         </form>
 
         <div class="container-fluid">
