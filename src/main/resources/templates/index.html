@@ -6,7 +6,7 @@
     <body>
         <nav th:replace="fragments :: nav">
         </nav>
-        
+
 
         <form th:replace="fragments/listing_form::form">
         </form>
@@ -19,11 +19,14 @@
             </div>
         </div>
         <br />
-        <table class="table">
+
+        <input type="text" id="listingSearch" onkeyup="searchListings()" placeholder="Search listings..">
+
+        <table id="listingTable" class="table">
             <thead>
                 <th scope="col">Listing</th>
             </thead>
-            <tbody>
+            <tbody id="listingTableBody">
                 <tr th:each="listing, index: ${listings}">
                     <span th:replace="listing/each::listing"></span>
                 </tr>
@@ -32,4 +35,4 @@
 
     </body>
 
-</html> 
+</html>
