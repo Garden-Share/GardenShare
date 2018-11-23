@@ -1,0 +1,14 @@
+<form th:fragment="form">
+  <input type="text" id="listingSearch" placeholder="Search listings..">
+  Minimum Weight
+  <input type="number" id="minWeight" name="minWeight" placeholder="0">
+  Maximum Weight
+  <input type="number" id="maxWeight" name="maxWeight" placeholder="0">
+  Filter Weight Unit
+  <select id="weightSelect" name="weightUnit" selected="both">
+      <option>both</option>
+      <option>kgs</option>
+      <option>lbs</option>
+  </select>
+  <input type="button" value="search" onclick="search()">
+</form>

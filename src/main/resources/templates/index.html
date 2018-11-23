@@ -20,7 +20,8 @@
         </div>
         <br />
 
-        <input type="text" id="listingSearch" onkeyup="searchListings()" placeholder="Search listings..">
+        <form th:replace="fragments/search_form::form">
+        </form>
 
         <table id="listingTable" class="table">
             <thead>

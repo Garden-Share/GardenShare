@@ -7,27 +7,94 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
             integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous" />
     <script>
-    function searchListings() {
 
-      // Declare variables
-      var input, filter, table, tr, td, i;
-      input = document.getElementById("listingSearch");
-      filter = input.value.toUpperCase();
+    function rangeWeight() {
+      var minEl, maxEl, min, max, tr, td, i;
+      minEl = document.getElementById("minWeight");
+      maxEl = document.getElementById("maxWeight");
+      min = minEl.value;
+      max = maxEl.value;
       table = document.getElementById("listingTable");
       tbody = document.getElementById("listingTableBody");
       tr = tbody.getElementsByTagName("tr");
 
-      // Loop through all table rows, and hide those who don't match the search query
-      for (i = 0; i < tr.length; i++) {
-        td = tr[i].getElementsByTagName("td")[0];
+      for (var i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[2];
         if (td) {
-          if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+          if (min >= max) {
             tr[i].style.display = "";
           } else {
-            tr[i].style.display = "none";
+            weight = parseInt(td.innerHTML);
+            if (weight < min || weight > max) {
+              tr[i].style.display = "none";
+            } else {
+              tr[i].style.display = "";
+            }
           }
         }
       }
+
+    }
+
+    function search() {
+      var input, select, minEl, maxEl, min, max, filter, selectFilter, table, tbody, tr, td, i;
+      input = document.getElementById("listingSearch");
+      select = document.getElementById("weightSelect");
+      minEl = document.getElementById("minWeight");
+      maxEl = document.getElementById("maxWeight");
+
+      min = minEl.value;
+      max = maxEl.value;
+      filter = input.value.toUpperCase();
+      selectFilter = select.value.toUpperCase();
+      table = document.getElementById("listingTable");
+      tbody = document.getElementById("listingTableBody");
+      tr = tbody.getElementsByTagName("tr");
+
+      for (var i = 0; i < tr.length; i++) {
+
+        td = tr[i].getElementsByTagName("td")[1];
+        if (td) {
+          if (selectFilter == "BOTH") {
+            tr[i].style.display = "";
+          } else {
+            if (td.innerHTML.toUpperCase().indexOf(selectFilter) > -1) {
+              tr[i].style.display = "";
+            } else {
+              tr[i].style.display = "none";
+              continue;
+            }
+          }
+        }
+
+        td = tr[i].getElementsByTagName("td")[2];
+        if (td) {
+          if (min >= max) {
+            tr[i].style.display = "";
+          } else {
+            weight = parseInt(td.innerHTML);
+            if (weight < min || weight > max) {
+              tr[i].style.display = "none";
+              continue;
+            } else {
+              tr[i].style.display = "";
+            }
+          }
+        }
+
+        if (filter.length > 0) {
+          td = tr[i].getElementsByTagName("td")[0];
+          if (td) {
+            if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+              tr[i].style.display = "";
+            } else {
+              tr[i].style.display = "none";
+            }
+          }
+        }
+
+      }
+
     }
     </script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
