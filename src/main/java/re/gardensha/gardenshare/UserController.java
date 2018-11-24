@@ -28,8 +28,8 @@ public class UserController {
             userRepo.save(newUser);
             result.addObject("user", newUser);
             return result;
-        }else{
-            if (possibleMatching.size() != 1){
+        } else {
+            if (possibleMatching.size() != 1) {
                 res.sendError(500, "There exists two users with the same oauth id! Please contact an admin!");
                 return null;
             }
