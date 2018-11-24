@@ -3,11 +3,13 @@ package re.gardensha.gardenshare;
 import java.io.IOException;
 import java.security.Principal;
 import java.util.List;
+import java.util.Optional;
 
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -34,6 +36,19 @@ public class UserController {
             result.addObject("user", possibleMatching.get(0));
             return result;
         }
+    }
+
+    @RequestMapping(value = "/user/{id}")
+    public ModelAndView getUser(@PathVariable("id") int userId, HttpServletResponse res) throws IOException {
+        ModelAndView result = new ModelAndView("user");
+        Optional<User> possibleUser = userRepo.findById(userId);
+        if (!possibleUser.isPresent()) {
+            res.sendError(404, "No user with that id was found");
+            return null;
+        }
+        User user = possibleUser.get();
+        result.addObject("user", user);
+        return result;
     }
 
 }

@@ -1,9 +1,12 @@
 package re.gardensha.gardenshare;
+import java.sql.Time;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import java.sql.Time;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 
 @Entity // This tells Hibernate to make a table out of this class
 public class Listing {
@@ -17,6 +20,10 @@ public class Listing {
 	private Boolean 	ended = false;
 	private Time 		startTime;
     private Time 		endTime;
+
+    @OneToOne
+	@JoinColumn(name = "fk_userid")
+    private User        createdBy;
     
     public Listing(){
         
@@ -27,13 +34,15 @@ public class Listing {
                    String weightUnit,
                    int count,
                    Time startTime,
-                   Time endTime){
+                   Time endTime,
+                   User createdBy){
         this.fruitType = type;
         this.weight = weight;
         this.weightUnit = weightUnit;
         this.count = count;
         this.startTime = startTime;
         this.endTime = endTime;
+        this.createdBy = createdBy;
     }
 
     public String toString() {
@@ -66,6 +75,10 @@ public class Listing {
 
     public Time getEndTime(){
         return endTime;
+    }
+
+    public User getUser(){
+        return createdBy;
     }
 
 }

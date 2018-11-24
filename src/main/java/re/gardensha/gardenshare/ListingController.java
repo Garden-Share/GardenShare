@@ -1,10 +1,12 @@
 package re.gardensha.gardenshare;
 
 import java.io.IOException;
+import java.security.Principal;
 import java.sql.Time;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.List;
 import java.util.Optional;
 import java.util.logging.Logger;
 
@@ -13,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -23,6 +26,9 @@ public class ListingController {
     @Autowired
     private ListingRepository listingRepository;
 
+    @Autowired
+    private UserRepository userRepository;
+
     private static String listingObjectName = "listing";
     // Use ISO 8601 date format
     private static DateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm'Z'");
@@ -30,9 +36,9 @@ public class ListingController {
 
     private static Logger logger = Logger.getGlobal();
 
-	@GetMapping(path="/listing")
-	public ModelAndView getListing(@RequestParam(value="id") int id, HttpServletResponse res) throws IOException {
-        ModelAndView result = new ModelAndView("listing");
+	@GetMapping(path="/listing/{id}")
+	public ModelAndView getListing(@PathVariable(value="id") int id, HttpServletResponse res) throws IOException {
+        ModelAndView result = new ModelAndView("listing/show");
         Optional<Listing> listing = listingRepository.findById(id);
         if (listing.isPresent()) {
             result.addObject(listingObjectName, listing.get());
@@ -44,7 +50,8 @@ public class ListingController {
 
     
     @PostMapping(path="/listing/new")
-    public ModelAndView createListing(@RequestParam(value="type") String type,
+    public ModelAndView createListing(Principal userPrincipal,
+                                      @RequestParam(value="type") String type,
                                       @RequestParam(value="weight") float weight,
                                       @RequestParam(value="weightUnit") String weightUnit,
                                       @RequestParam(value="count") Optional<Integer> count,
@@ -64,7 +71,13 @@ public class ListingController {
             logger.info("End param was "+endTimeStamp);
             throw new InvalidListingException("Start or end date had an invalid date format");
         }
-        Listing newListing = new Listing(type, weight, weightUnit, count.orElse(-1), start, end);
+
+        List<User> possibleUser = userRepository.findUserByOauthId(userPrincipal.getName());
+        if (possibleUser.size() != 1){
+            throw new InvalidListingException("Could not find creator as valid user in database");
+        }
+
+        Listing newListing = new Listing(type, weight, weightUnit, count.orElse(-1), start, end, possibleUser.get(0));
         listingRepository.save(newListing);
         result.addObject(listingObjectName, newListing);
         return result;
