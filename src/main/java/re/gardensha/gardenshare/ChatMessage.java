@@ -8,6 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class ChatMessage {
@@ -18,11 +19,11 @@ public class ChatMessage {
    private Time sendTime;
    private Time receivedTime;
 
-   @OneToMany
+   @OneToOne
    @JoinColumn(name = "fk_userid")
    private User sentBy;
 
-   @OneToMany
+   @OneToOne
    @JoinColumn(name = "fk_chatRoomid")
    private Chat chatRoom;
 
