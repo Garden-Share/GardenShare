@@ -31,8 +31,8 @@ public class ListingController {
 
     private static String listingObjectName = "listing";
     // Use ISO 8601 date format
-    private static DateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm'Z'");
-    private static DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+    private DateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm'Z'");
+    private DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
     private static Logger logger = Logger.getGlobal();
 
