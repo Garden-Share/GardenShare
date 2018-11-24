@@ -58,7 +58,8 @@ public class ListingController {
                                       @RequestParam(value="start") Optional<String> startTimeStamp,
                                       @RequestParam(value="end") String endTimeStamp) throws InvalidListingException {
         ModelAndView result = new ModelAndView("listing/new");
-        Time start, end;
+        Time start;
+        Time end;
         try {
             if (startTimeStamp.isPresent()){
                 start = parseTime(startTimeStamp.get());
@@ -88,10 +89,9 @@ public class ListingController {
             // Try parsing with ISO format first
             return new Time(format.parse(timeStamp).getTime());
         }catch(ParseException e){
-
+            // If it doesn't work, parse with just the date format
+            return new Time(dateFormat.parse(timeStamp).getTime());
         }
-        // If it doesn't work, parse with just the date format
-        return new Time(dateFormat.parse(timeStamp).getTime());
     }
 	
 }
