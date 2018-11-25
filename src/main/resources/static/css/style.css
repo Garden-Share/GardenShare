@@ -1,0 +1,28 @@
+.RoomList {
+   height: 80vh;
+   border-right: 1px solid rgba(165, 165, 165, 0.5);
+   border-left: 1px solid rgba(165, 165, 165, 0.5);
+   padding-bottom: 20px;
+}
+
+.sender {
+   font-size: 1.5rem;
+   display: inline-block;
+   font-weight: 700;
+   margin-bottom: 5px;
+}
+
+.rDate {
+   padding-top: 0.5rem;
+   float: right;
+   font-size: 1 rem;
+}
+
+.chatPanel {
+   border-top: 1px solid rgba(37, 37, 37, 0.1);
+   border-bottom: 1px solid rgba(61, 61, 61, 0.1);
+   padding: 15px;
+}
+.chatPanel:hover {
+   background-color: rgba(197, 197, 197, 0.1);
+}
