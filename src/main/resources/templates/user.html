@@ -1,1 +1,11 @@
-User page - <b th:text="${user.id}"></b>
+<html>
+    <head th:replace="fragments/includes :: head">
+    </head>
+
+    <body>
+        <nav th:replace="fragments :: nav">
+        </nav>
+        User page - <b th:text="${user.id}"></b> - <b th:text="${user.getName()}"></b>
+        <br />
+    </body>
+</html>

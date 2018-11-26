@@ -1,5 +1,14 @@
-Listing / show
-<br />
-Listing has id <b th:text="${listing.id}"></b>
-<br />
-Listing created by user <b th:text="${listing.getUser()}"></b>
+<html>
+    <head th:replace="fragments/includes :: head">
+    </head>
+
+    <body>
+        <nav th:replace="fragments :: nav">
+        </nav>
+        Listing / show
+        <br />
+        Listing has id <b th:text="${listing.id}"></b>
+        <br />
+        Listing created by user <b th:text="${listing.getUser().getName()}"></b>
+    </body>
+</html>

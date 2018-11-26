@@ -1,4 +1,13 @@
-Listing / new
-<br />
-New listing has id <b th:text="${listing.id}"></b>
-<br />
+<html>
+    <head th:replace="fragments/includes :: head">
+    </head>
+
+    <body>
+        <nav th:replace="fragments :: nav">
+        </nav>
+        Listing / new
+        <br />
+        New listing has id <b th:text="${listing.id}"></b>
+        <br />
+    </body>
+</html>
