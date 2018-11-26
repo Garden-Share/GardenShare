@@ -1,0 +1,43 @@
+<html>
+    <head th:replace="fragments/includes :: head">
+    </head>
+
+    <body>
+        
+        <nav th:replace="fragments :: nav">
+        </nav>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-2"></div>
+                <div class="col-8">
+                    User edit page - <b th:text="${user.id}"></b> - <b th:text="${user.getName()}"></b>
+                    <br />
+                    <form target="/user/edit" method="POST">
+                        <div class="row">
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon1">Username</span>
+                                </div>
+                                <input type="text" name="name" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" th:value="${user.getName()}">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon1">Email Address</span>
+                                </div>
+                                <input type="text" name="email" class="form-control" placeholder="user@example.com" aria-label="Email" aria-describedby="basic-addon1" th:value="${user.getEmail()}">
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="input-group text-center">
+                                <button type="submit" class="btn btn-primary" >Submit</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

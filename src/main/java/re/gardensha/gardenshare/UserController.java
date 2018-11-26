@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.security.Principal;
 import java.util.List;
 import java.util.Optional;
+import java.util.regex.Pattern;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -16,6 +17,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class UserController {
+
+    // Regex pattern to match valid email addresses
+    // Taken from https://www.regular-expressions.info/email.html
+    private static Pattern emailRegex = Pattern.compile("\\A[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\z");
 
     @Autowired
     private UserRepository userRepo;
@@ -53,8 +58,11 @@ public class UserController {
     }
 
     @RequestMapping(value = "/user/edit")
-    public ModelAndView editUser(Principal principal, @RequestParam(value="name") Optional<String> name, HttpServletResponse res) throws IOException {
-        ModelAndView result = new ModelAndView("user");
+    public ModelAndView editUser(Principal principal,
+                                 @RequestParam(value="name") Optional<String> name,
+                                 @RequestParam(value="email") Optional<String> email,
+                                 HttpServletResponse res) throws IOException {
+        ModelAndView result = new ModelAndView("user/edit");
 
         // Find the user based on who is logged in
         List<User> possibleMatching = userRepo.findUserByOauthId(principal.getName());
@@ -67,6 +75,12 @@ public class UserController {
         // Update with all present fields
         if (name.isPresent()){
             user.setName(name.get());
+        }
+        if (email.isPresent()){
+            String emailString = email.get();
+            if (emailRegex.matcher(emailString).matches()){
+                user.setEmail(email.get());
+            }
         }
         userRepo.save(user);
 
