@@ -5,4 +5,5 @@
     <td th:text="${listing.getCount()}"></td>
     <td th:text="${listing.getStartTime()}"></td>
     <td th:text="${listing.getEndTime()}"></td>
+    <td><a th:href="@{/listing/{id}(id=${listing.id})}" class="btn">See listing</a></td>
 </span>
