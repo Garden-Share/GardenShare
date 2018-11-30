@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-public class ListingController {
+public class ListingController extends GardenShareController {
 
     @Autowired
     private ListingRepository listingRepository;

@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-public class UserController {
+public class UserController extends GardenShareController {
 
     // Regex pattern to match valid email addresses
     // Taken from https://www.regular-expressions.info/email.html

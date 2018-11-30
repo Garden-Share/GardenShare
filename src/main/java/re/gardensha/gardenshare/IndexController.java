@@ -6,12 +6,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class IndexController {
+public class IndexController extends GardenShareController {
 
     @Autowired
     private ListingRepository listingRepository;
-
-
 
     @GetMapping("/")
     public String root(Model model) {
