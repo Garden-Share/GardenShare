@@ -21,6 +21,8 @@ public class UserController extends GardenShareController {
     // Regex pattern to match valid email addresses
     // Taken from https://www.regular-expressions.info/email.html
     private static Pattern emailRegex = Pattern.compile("\\A[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\z");
+    
+    private static String userPageObjectName = "userPage";
 
     @Autowired
     private UserRepository userRepo;
@@ -32,14 +34,14 @@ public class UserController extends GardenShareController {
         if (possibleMatching.isEmpty()) {
             User newUser = new User(principal.getName());
             userRepo.save(newUser);
-            result.addObject("userPage", newUser);
+            result.addObject(userPageObjectName, newUser);
             return result;
         } else {
             if (possibleMatching.size() != 1) {
                 res.sendError(500, "There exists two users with the same oauth id! Please contact an admin!");
                 return null;
             }
-            result.addObject("userPage", possibleMatching.get(0));
+            result.addObject(userPageObjectName, possibleMatching.get(0));
             return result;
         }
     }
@@ -53,7 +55,7 @@ public class UserController extends GardenShareController {
             return null;
         }
         User user = possibleUser.get();
-        result.addObject("userPage", user);
+        result.addObject(userPageObjectName, user);
         return result;
     }
 
@@ -84,7 +86,7 @@ public class UserController extends GardenShareController {
         }
         userRepo.save(user);
 
-        result.addObject("userPage", user);
+        result.addObject(userPageObjectName, user);
         return result;
     }
 
