@@ -4,6 +4,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class UserTest{
+    // These tests are by Alex Gravenor
 
 
     @Test
