@@ -27,33 +27,33 @@ public class UserController extends GardenShareController {
 
     @RequestMapping(value = "/user")
     public ModelAndView user(Principal principal, HttpServletResponse res) throws IOException {
-        ModelAndView result = new ModelAndView("user");
+        ModelAndView result = new ModelAndView("user/show");
         List<User> possibleMatching = userRepo.findUserByOauthId(principal.getName());
         if (possibleMatching.isEmpty()) {
             User newUser = new User(principal.getName());
             userRepo.save(newUser);
-            result.addObject("user", newUser);
+            result.addObject("userPage", newUser);
             return result;
         } else {
             if (possibleMatching.size() != 1) {
                 res.sendError(500, "There exists two users with the same oauth id! Please contact an admin!");
                 return null;
             }
-            result.addObject("user", possibleMatching.get(0));
+            result.addObject("userPage", possibleMatching.get(0));
             return result;
         }
     }
 
     @RequestMapping(value = "/user/{id}")
     public ModelAndView getUser(@PathVariable("id") int userId, HttpServletResponse res) throws IOException {
-        ModelAndView result = new ModelAndView("user");
+        ModelAndView result = new ModelAndView("user/show");
         Optional<User> possibleUser = userRepo.findById(userId);
         if (!possibleUser.isPresent()) {
             res.sendError(404, "No user with that id was found");
             return null;
         }
         User user = possibleUser.get();
-        result.addObject("user", user);
+        result.addObject("userPage", user);
         return result;
     }
 
@@ -84,8 +84,9 @@ public class UserController extends GardenShareController {
         }
         userRepo.save(user);
 
-        result.addObject("user", user);
+        result.addObject("userPage", user);
         return result;
     }
+
 
 }
