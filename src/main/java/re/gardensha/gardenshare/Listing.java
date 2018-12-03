@@ -1,5 +1,7 @@
 package re.gardensha.gardenshare;
-import java.sql.Time;
+import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -18,13 +20,14 @@ public class Listing {
     private String      weightUnit = "lbs";
 	private Integer 	count = 0;
 	private Boolean 	ended = false;
-	private Time 		startTime;
-    private Time 		endTime;
+	private Timestamp 		startTime;
+    private Timestamp 		endTime;
 
     @OneToOne
 	@JoinColumn(name = "fk_userid")
     private User        createdBy;
-    
+
+
     public Listing(){
         
     }
@@ -33,8 +36,8 @@ public class Listing {
                    float weight,
                    String weightUnit,
                    int count,
-                   Time startTime,
-                   Time endTime,
+                   Timestamp startTime,
+                   Timestamp endTime,
                    User createdBy){
         this.fruitType = type;
         this.weight = weight;
@@ -69,16 +72,28 @@ public class Listing {
         return ended;
     }
 
-    public Time getStartTime(){
+    public Timestamp getStartTime(){
         return startTime;
     }
 
-    public Time getEndTime(){
+    public Timestamp getEndTime(){
         return endTime;
     }
 
     public User getUser(){
         return createdBy;
+    }
+
+    public String getFormattedStartDate(){
+        System.out.println(startTime);
+        DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
+        return dateFormat.format(startTime);
+    }
+
+    public String getFormattedEndDate(){
+        System.out.println(endTime);
+        DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
+        return dateFormat.format(endTime);
     }
 
 }

@@ -2,7 +2,7 @@ package re.gardensha.gardenshare;
 
 import java.io.IOException;
 import java.security.Principal;
-import java.sql.Time;
+import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -58,13 +58,13 @@ public class ListingController extends GardenShareController {
                                       @RequestParam(value="start") Optional<String> startTimeStamp,
                                       @RequestParam(value="end") String endTimeStamp) throws InvalidListingException {
         ModelAndView result = new ModelAndView("listing/new");
-        Time start;
-        Time end;
+        Timestamp start;
+        Timestamp end;
         try {
             if (startTimeStamp.isPresent()){
                 start = parseTime(startTimeStamp.get());
             }else{
-                start = new Time(System.currentTimeMillis());
+                start = new Timestamp(System.currentTimeMillis());
             }
             end = parseTime(endTimeStamp);
         }catch(ParseException exception){
@@ -84,13 +84,29 @@ public class ListingController extends GardenShareController {
         return result;
     }
 
-    private Time parseTime(String timeStamp) throws ParseException {
+    @GetMapping("/listing/{id}/delete")
+    public void deleteListing(Principal userPrincipal,
+                              @PathVariable(value="id") int id,
+                              HttpServletResponse res) throws IOException {
+        List<User> possibleUser = userRepository.findUserByOauthId(userPrincipal.getName());
+        if (possibleUser.size() != 1){
+            res.sendError(500, "No user found associated with the request");
+        }
+        Optional<Listing> listing = listingRepository.findById(id);
+        User user = possibleUser.get(0);
+        if (listing.isPresent() && listing.get().getUser().getId() == user.getId()) {
+            listingRepository.delete(listing.get());
+        }
+        res.sendRedirect("/");
+    }
+
+    private Timestamp parseTime(String timeStamp) throws ParseException {
         try {
             // Try parsing with ISO format first
-            return new Time(format.parse(timeStamp).getTime());
+            return new Timestamp(format.parse(timeStamp).getTime());
         }catch(ParseException e){
-            // If it doesn't work, parse with just the date format
-            return new Time(dateFormat.parse(timeStamp).getTime());
+            // If it doesn't work, parse with just the date 
+            return new Timestamp(dateFormat.parse(timeStamp).getTime());
         }
     }
 	
