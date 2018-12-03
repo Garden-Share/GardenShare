@@ -1,0 +1,12 @@
+<table th:fragment="table">
+    <thead>
+        <th>User</th>
+        <th>Message</th>
+    </thead>
+    <tbody>
+            <tr th:each="review, index: ${reviews}">
+                <td th:replace="review.getMessage()"></td>
+                <td th:replace="review.getMessage()"></td>
+            </tr>
+    </tbody>
+</table>

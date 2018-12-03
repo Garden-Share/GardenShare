@@ -85,13 +85,11 @@ public class Listing {
     }
 
     public String getFormattedStartDate(){
-        System.out.println(startTime);
         DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
         return dateFormat.format(startTime);
     }
 
     public String getFormattedEndDate(){
-        System.out.println(endTime);
         DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
         return dateFormat.format(endTime);
     }
