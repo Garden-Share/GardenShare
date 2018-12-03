@@ -23,9 +23,13 @@ public class UserController extends GardenShareController {
     private static Pattern emailRegex = Pattern.compile("\\A[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\z");
     
     private static String userPageObjectName = "userPage";
+    private static String userPageListingName = "listings";
 
     @Autowired
     private UserRepository userRepo;
+
+    @Autowired
+    private ListingRepository listingRepo;
 
     @RequestMapping(value = "/user")
     public ModelAndView user(Principal principal, HttpServletResponse res) throws IOException {
@@ -35,6 +39,9 @@ public class UserController extends GardenShareController {
             User newUser = new User(principal.getName());
             userRepo.save(newUser);
             result.addObject(userPageObjectName, newUser);
+
+            List<Listing> listings = listingRepo.findListingByCreatedBy(newUser);
+            result.addObject(userPageListingName, listings);
             return result;
         } else {
             if (possibleMatching.size() != 1) {
@@ -55,6 +62,10 @@ public class UserController extends GardenShareController {
             return null;
         }
         User user = possibleUser.get();
+
+        List<Listing> listings = listingRepo.findListingByCreatedBy(user);
+
+        result.addObject(userPageListingName, listings);
         result.addObject(userPageObjectName, user);
         return result;
     }
