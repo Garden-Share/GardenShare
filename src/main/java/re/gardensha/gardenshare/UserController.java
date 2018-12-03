@@ -48,7 +48,10 @@ public class UserController extends GardenShareController {
                 res.sendError(500, "There exists two users with the same oauth id! Please contact an admin!");
                 return null;
             }
-            result.addObject(userPageObjectName, possibleMatching.get(0));
+            User user = possibleMatching.get(0);
+            List<Listing> listings = listingRepo.findListingByCreatedBy(user);
+            result.addObject(userPageListingName, listings);
+            result.addObject(userPageObjectName, user);
             return result;
         }
     }

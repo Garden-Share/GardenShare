@@ -7,5 +7,15 @@
         </nav>
         User page - <b th:text="${userPage.id}"></b> - <b th:text="${userPage.getName()}"></b>
         <br />
+        <table id="listingTable" class="table">
+            <thead>
+                <th scope="col">Listing</th>
+            </thead>
+            <tbody id="listingTableBody">
+                <tr th:each="listing, index: ${listings}">
+                    <span th:replace="listing/each::listing"></span>
+                </tr>
+            </tbody>
+        </table>
     </body>
 </html>
