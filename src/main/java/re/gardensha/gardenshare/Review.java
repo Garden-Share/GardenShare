@@ -44,5 +44,13 @@ public class Review {
         return message;
     }
 
+    public User getReviewee(){
+        return reviewee;
+    }
+
+    public User getReviewer(){
+        return reviewer;
+    }
+
 
 }

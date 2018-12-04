@@ -1,18 +1,14 @@
 <form th:fragment="form" method="POST" action="listing/new">
     Type
-    <input name="type" placeholder="Type" />
+    <input class="input" name="type" placeholder="Type" />
     Weight
-    <input name="weight" type="number" placeholder="1" step="0.1">
+    <input class="input" name="weight" type="number" placeholder="1" step="0.1">
     Weight Unit
-    <select name="weightUnit" selected="lbs">
+    <select class="input" name="weightUnit" selected="lbs">
         <option>kgs</option>
         <option>lbs</option>
     </select>
     Count
-    <input name="count" type="number" placeholder="1">
-    Start time
-    <input name="start" type="date">
-    End time
-    <input name="end" type="date">
-    <input type="submit" />
+    <input class="input" name="count" type="number" placeholder="1">
+    <input class="input" type="submit" />
 </form>
