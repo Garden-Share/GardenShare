@@ -22,7 +22,7 @@ public class ReviewController extends GardenShareController {
     @Autowired
     private UserRepository userRepository;
 
-    @GetMapping("/review/{id}")
+    @GetMapping("/user/review/{id}")
     public Review getReview(@PathVariable(name="id") Integer id, HttpServletResponse res) throws IOException{
         Optional<Review> review = reviewRepository.findById(id);
         if (review.isPresent()) {
@@ -32,7 +32,7 @@ public class ReviewController extends GardenShareController {
         return null;
     }
 
-    @GetMapping("/review/new")
+    @GetMapping("/user/review/new")
     public Review createReview(Principal user,
                                @RequestParam(value="message") String message,
                                @RequestParam(value="user") Integer userId,

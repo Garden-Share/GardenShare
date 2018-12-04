@@ -6,7 +6,7 @@
     </thead>
     <tbody>
             <tr th:each="review, index: ${reviews}">
-                <td th:text="${review.getReviewee().getName()}"></td>
+                <td th:text="${review.getReviewer().getName()}"></td>
                 <td th:text="${review.getRatingScore()}"></td>
                 <td th:text="${review.getMessage()}"></td>
             </tr>

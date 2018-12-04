@@ -28,7 +28,7 @@ public class ReviewControllerTest {
     @Test
     public void postingAReviewWithNoParametersShouldNotAddReview() throws Exception {
         long reviewCount = reviewRepository.count();
-        this.restTemplate.postForObject("http://localhost:" + port + "/review/new", null, String.class);
+        this.restTemplate.postForObject("http://localhost:" + port + "/user/review/new", null, String.class);
         assertThat(reviewCount).isEqualTo(reviewRepository.count());
     }
 
@@ -36,7 +36,7 @@ public class ReviewControllerTest {
     public void gettingAnExistingReviewShouldWork() {
         Review empty = new Review("Test Message 123", 3, null, null);
         reviewRepository.save(empty);
-        ResponseEntity<Review> response = this.restTemplate.getForEntity("http://localhost:" + port + "/review/" + empty.id, Review.class);
+        ResponseEntity<Review> response = this.restTemplate.getForEntity("http://localhost:" + port + "/user/review/" + empty.id, Review.class);
         assertThat(response.getStatusCodeValue()).isEqualTo(200); 
         // 200 OK
         assertThat(response.getBody().id).isEqualTo(empty.id);
