@@ -56,7 +56,7 @@ public class ListingController extends GardenShareController {
                                       @RequestParam(value="weightUnit") String weightUnit,
                                       @RequestParam(value="count") Optional<Integer> count,
                                       @RequestParam(value="start") Optional<String> startTimeStamp,
-                                      @RequestParam(value="end") String endTimeStamp) throws InvalidListingException {
+                                      @RequestParam(value="end") Optional<String> endTimeStamp) throws InvalidListingException {
         ModelAndView result = new ModelAndView("listing/new");
         Timestamp start;
         Timestamp end;
@@ -66,7 +66,11 @@ public class ListingController extends GardenShareController {
             }else{
                 start = new Timestamp(System.currentTimeMillis());
             }
-            end = parseTime(endTimeStamp);
+            if (endTimeStamp.isPresent()){
+                end = parseTime(endTimeStamp.get());
+            }else{
+                end = new Timestamp(System.currentTimeMillis());
+            }
         }catch(ParseException exception){
             logger.info("Start param was "+startTimeStamp);
             logger.info("End param was "+endTimeStamp);

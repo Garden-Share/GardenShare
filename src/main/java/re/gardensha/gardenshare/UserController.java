@@ -24,12 +24,16 @@ public class UserController extends GardenShareController {
     
     private static String userPageObjectName = "userPage";
     private static String userPageListingName = "listings";
+    private static String userPageReviewName = "reviews";
 
     @Autowired
     private UserRepository userRepo;
 
     @Autowired
     private ListingRepository listingRepo;
+
+    @Autowired
+    private ReviewRepository reviewRepo;
 
     @RequestMapping(value = "/user")
     public ModelAndView user(Principal principal, HttpServletResponse res) throws IOException {
@@ -42,6 +46,7 @@ public class UserController extends GardenShareController {
 
             List<Listing> listings = listingRepo.findListingByCreatedBy(newUser);
             result.addObject(userPageListingName, listings);
+            result.addObject(userPageReviewName, getReviews(newUser));
             return result;
         } else {
             if (possibleMatching.size() != 1) {
@@ -52,6 +57,7 @@ public class UserController extends GardenShareController {
             List<Listing> listings = listingRepo.findListingByCreatedBy(user);
             result.addObject(userPageListingName, listings);
             result.addObject(userPageObjectName, user);
+            result.addObject(userPageReviewName, getReviews(user));
             return result;
         }
     }
@@ -70,6 +76,7 @@ public class UserController extends GardenShareController {
 
         result.addObject(userPageListingName, listings);
         result.addObject(userPageObjectName, user);
+        result.addObject(userPageReviewName, getReviews(user));
         return result;
     }
 
@@ -104,5 +111,8 @@ public class UserController extends GardenShareController {
         return result;
     }
 
+    private List<Review> getReviews(User user){
+        return reviewRepo.findReviewByReviewee(user);
+    }
 
 }
