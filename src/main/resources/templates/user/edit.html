@@ -31,6 +31,15 @@
                         </div>
                         <br />
                         <div class="row">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="basic-addon1">Bio</span>
+                                    </div>
+                                    <input type="text" name="description" class="form-control" placeholder="Hi, I'm ... I sell ..." aria-label="Bio" aria-describedby="basic-addon1" th:value="${userPage.getDescription()}">
+                                </div>
+                        </div>
+                        <br />
+                        <div class="row">
                             <div class="input-group text-center">
                                 <button type="submit" class="btn btn-primary" >Submit</button>
                             </div>

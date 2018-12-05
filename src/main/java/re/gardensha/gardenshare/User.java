@@ -3,9 +3,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
 
 @Entity // This tells Hibernate to make a table out of this class
 public class User {
@@ -18,6 +15,8 @@ public class User {
 	private String email;
 
 	private String oauthId;
+
+	private String description;
 	
 
 	public User(String oauthId){
@@ -54,6 +53,14 @@ public class User {
 
 	public String getOAuthId(){
 		return oauthId;
+	}
+
+	public String getDescription(){
+		return description;
+	}
+
+	public void setDescription(String desc){
+		description = desc;
 	}
 
 }

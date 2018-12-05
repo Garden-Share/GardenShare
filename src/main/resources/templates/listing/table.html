@@ -1,0 +1,14 @@
+<table th:fragment="table" id="listingTable" class="table">
+        <thead>
+            <th scope="col">Selling</th>
+            <th scope="col">Weight</th>
+            <th scope="col">Count</th>
+        </thead>
+
+        <tbody id="listingTableBody">
+                <tr th:each="listing, index: ${listings}">
+                    <span th:replace="listing/each::listing"></span>
+                </tr>
+        </tbody>
+
+</table>

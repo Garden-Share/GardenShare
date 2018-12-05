@@ -15,15 +15,7 @@
             <form th:replace="fragments/search_form::form">
             </form>
 
-            <table id="listingTable" class="table">
-                <thead>
-                    <th scope="col">Listing</th>
-                </thead>
-                <tbody id="listingTableBody">
-                    <tr th:each="listing, index: ${listings}">
-                        <span th:replace="listing/each::listing"></span>
-                    </tr>
-                </tbody>
+            <table th:replace="listing/table::table" id="listingTable" class="table">
             </table>
         </div>
     </body>
