@@ -35,5 +35,18 @@
                 </div>
             </div>
         </div>
+        <div th:replace="fragments/scripts::scripts">
+        </div>
+        <div th:replace="fragments/scripts::tableScripts">
+        </div>
+        <div>
+                <script>
+                        $(document).ready(function () {
+                        $('#listingTable').DataTable();
+                        $('#reviewTable').DataTable();
+                        $('.dataTables_length').addClass('bs-select');
+                        });
+                    </script>
+        </div>
     </body>
 </html>
