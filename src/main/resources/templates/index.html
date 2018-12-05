@@ -15,28 +15,7 @@
             <!--<form th:replace="fragments/search_form::form">
             </form>-->
 
-            <table id="listingTable" class="table">
-                <thead>
-                    <tr>
-                        <th class="th-sm">Type
-                        </th>
-                        <th class="th-sm">Weight
-                        </th>
-                        <th class="th-sm">Units
-                        </th>
-                        <th class="th-sm">Count
-                        </th>
-                        <th class="th-sm">Start Time
-                        </th>
-                        <th class="th-sm">End Time
-                        </th>
-                    </tr>
-                </thead>
-                <tbody id="listingTableBody">
-                    <tr th:each="listing, index: ${listings}">
-                        <span th:replace="listing/each::listing"></span>
-                    </tr>
-                </tbody>
+            <table th:replace="listing/table::table" id="listingTable" class="table">
             </table>
         </div>
         <div th:replace="fragments/scripts::scripts">

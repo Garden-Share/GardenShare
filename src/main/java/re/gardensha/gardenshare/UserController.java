@@ -84,6 +84,7 @@ public class UserController extends GardenShareController {
     public ModelAndView editUser(Principal principal,
                                  @RequestParam(value="name") Optional<String> name,
                                  @RequestParam(value="email") Optional<String> email,
+                                 @RequestParam(value="description") Optional<String> description,
                                  HttpServletResponse res) throws IOException {
         ModelAndView result = new ModelAndView("user/edit");
 
@@ -105,6 +106,11 @@ public class UserController extends GardenShareController {
                 user.setEmail(email.get());
             }
         }
+
+        if (description.isPresent()) {
+            user.setDescription(description.get());
+        }
+
         userRepo.save(user);
 
         result.addObject(userPageObjectName, user);
