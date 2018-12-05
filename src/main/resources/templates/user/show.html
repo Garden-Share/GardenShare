@@ -14,11 +14,14 @@
                             <h4 class="card-title">
                                 <b th:text="${userPage.getName()}"></b>
                                 <a th:if="${userPage == user}" href="/user/edit"><i class="material-icons">edit</i></a>
+                                <a th:unless="${userPage == user}" th:href="@{/user/{id}(id=${userPage.getId()})}"><i class="material-icons">chat</i></a>
                             </h4>
                             <p class="card-body" th:text="${userPage.getDescription()}">
                             </p>
+                            <br />
                         </div>
                 </div>
+                <br />
                 <div class="col-5">
                     <table th:replace="listing/table::table" id="listingTable" class="table">
                     </table>
