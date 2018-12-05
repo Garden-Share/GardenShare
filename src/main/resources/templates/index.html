@@ -12,12 +12,25 @@
             </form>
             <br />
 
-            <form th:replace="fragments/search_form::form">
-            </form>
+            <!--<form th:replace="fragments/search_form::form">
+            </form>-->
 
             <table id="listingTable" class="table">
                 <thead>
-                    <th scope="col">Listing</th>
+                    <tr>
+                        <th class="th-sm">Type
+                        </th>
+                        <th class="th-sm">Weight
+                        </th>
+                        <th class="th-sm">Units
+                        </th>
+                        <th class="th-sm">Count
+                        </th>
+                        <th class="th-sm">Start Time
+                        </th>
+                        <th class="th-sm">End Time
+                        </th>
+                    </tr>
                 </thead>
                 <tbody id="listingTableBody">
                     <tr th:each="listing, index: ${listings}">
@@ -26,6 +39,19 @@
                 </tbody>
             </table>
         </div>
+        <div th:replace="fragments/scripts::scripts">
+        </div>
+        <div th:replace="fragments/scripts::tableScripts">
+        </div>
+        <div>
+            <script>
+                $(document).ready(function () {
+                $('#listingTable').DataTable();
+                $('.dataTables_length').addClass('bs-select');
+                });
+            </script>
+        </div>
+
     </body>
 
 </html>
