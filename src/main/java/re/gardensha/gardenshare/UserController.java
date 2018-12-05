@@ -6,7 +6,9 @@ import java.util.List;
 import java.util.Optional;
 import java.util.regex.Pattern;
 
+import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -60,6 +62,13 @@ public class UserController extends GardenShareController {
             result.addObject(userPageReviewName, getReviews(user));
             return result;
         }
+    }
+
+    @RequestMapping(value = "/sign_out")
+    public ModelAndView resetSessionId(HttpSession session, HttpServletRequest request, HttpServletResponse res) throws IOException {
+        session.invalidate();
+        res.sendRedirect("/");
+        return null;
     }
 
     @RequestMapping(value = "/user/{id}")
