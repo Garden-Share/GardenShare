@@ -20,10 +20,9 @@
 
                 <p>Weight: <b th:text="${listing.getWeightString()}"></b></p>
 
-                <p th:text="${listing.getUser().getName()}"></p>
                 <div class="row">
                     <div class="col-6">
-                        <a th:href="@{/user/{id}(id=${listing.getUser().getId()})}" class="card-link">Creator</a>
+                        <a th:href="@{/user/{id}(id=${listing.getUser().getId()})}" th:text="${listing.getUser().getName()}" class="card-link"></a>
                     </div>
                     <div class="col-6 text-right">
                         <a th:href="@{/user/{id}(id=${listing.getUser().getId()})}" class="card-link"><i class="material-icons">chat</i></a>
