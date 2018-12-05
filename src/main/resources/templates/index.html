@@ -15,7 +15,21 @@
             <!--<form th:replace="fragments/search_form::form">
             </form>-->
 
-            <table th:replace="listing/table::table" id="listingTable" class="table">
+            <!--<table th:replace="listing/table::table" id="listingTable" class="table">
+            </table>-->
+            <table th:fragment="table" id="listingTable" class="table table-striped table-bordered table-sm">
+                    <thead>
+                        <th class="th-sm">Selling</th>
+                        <th class="th-sm">Weight</th>
+                        <th class="th-sm">Count</th>
+                    </thead>
+            
+                    <tbody id="listingTableBody">
+                            <tr th:each="listing, index: ${listings}">
+                                <span th:replace="listing/each::listing"></span>
+                            </tr>
+                    </tbody>
+            
             </table>
         </div>
         <div th:replace="fragments/scripts::scripts">
