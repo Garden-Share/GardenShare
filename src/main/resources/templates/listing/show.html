@@ -8,7 +8,14 @@
         <div class="container">
           <div class="card" style="width: 18rem;">
             <div class="card-body">
-                <h5 th:text="${listing.getType()}"></h5>
+                <div class="row">
+                    <div class="col-6">
+                        <h5 th:text="${listing.getType()}"></h5>
+                    </div>
+                    <div class="col-6 text-right" th:if="${listing.getUser() == user}">
+                        <a th:href="@{/listing/{id}/delete(id=${listing.id})}" class="card-link"><i class="material-icons">delete</i></a>
+                    </div>
+                </div>
                 <p>Quantity: <b th:text="${listing.getCount()}"></b></p>
 
                 <p>Weight: <b th:text="${listing.getWeightString()}"></b></p>
