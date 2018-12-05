@@ -14,7 +14,7 @@ public class EnterpriseGradeLooper {
     // Uses a very advanced technique to calculate the product of all integers up to and including n
     public int product(int n){
         int result = 1;
-        for (int i = 1; i < n; i++){
+        for (int i = 1; i <= n; i++){
             result *= i;
         }
         return result;
@@ -23,7 +23,7 @@ public class EnterpriseGradeLooper {
     // Uses a very advanced technique to calculate the sum of all integers up to and including n
     public int sum(int n){
         int result = 1;
-        for (int i = 1; i < n; i++){
+        for (int i = 1; i <= n; i++){
             result += i;
         }
         return result;
