@@ -1,14 +1,14 @@
-<form th:fragment="form">
-  <input type="text" id="listingSearch" placeholder="Search listings..">
-  Minimum Weight
-  <input type="number" id="minWeight" name="minWeight" placeholder="0">
-  Maximum Weight
-  <input type="number" id="maxWeight" name="maxWeight" placeholder="0">
-  Filter Weight Unit
-  <select id="weightSelect" name="weightUnit" selected="both">
+<form th:fragment="form" class="form-inline">
+  <input type="text" id="listingSearch" placeholder="Search listings.." class="form-control mb-2 mr-sm-2">
+  <label for="minWeight" class="mr-2">Minimum Weight</label>
+  <input type="number" id="minWeight" name="minWeight" placeholder="0" class="form-control mb-2 mr-sm-2">
+  <label for="maxWeight" class="mr-2">Maximum Weight</label>
+  <input type="number" id="maxWeight" name="maxWeight" placeholder="0" class="form-control mb-2 mr-sm-2">
+  <label for="weightSelect" class="mr-2">Filter Weight Unit</label>
+  <select id="weightSelect" name="weightUnit" selected="both" class="custom-select custom-select-sm my-1 mr-2">
       <option>both</option>
       <option>kgs</option>
       <option>lbs</option>
   </select>
-  <input type="button" value="search" onclick="search()">
+  <input type="button" value="search" onclick="search()" class="btn btn-primary mb-2">
 </form>

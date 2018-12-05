@@ -5,10 +5,19 @@
     <body>
         <nav th:replace="fragments :: nav">
         </nav>
-        Listing / show
-        <br />
-        Listing has id <b th:text="${listing.id}"></b>
-        <br />
-        Listing created by user <b th:text="${listing.getUser().getName()}"></b>
+        <div class="container">
+          <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <h5 th:text="${listing.getType()}"></h5>
+                <p>Quantity: <b th:text="${listing.getCount()}"></b></p>
+
+                <p>Weight: <b th:text="${listing.getWeightString()}"></b></p>
+
+                <p th:text="${listing.getUser().getName()}"></p>
+                <a th:href="@{/user/{id}(id=${listing.getUser().getId()})}" class="card-link">Creator</a>
+            </div>
+          </div>
+        </div>
+
     </body>
 </html>

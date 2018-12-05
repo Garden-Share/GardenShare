@@ -1,14 +1,13 @@
-<form th:fragment="form" method="POST" action="listing/new">
-    Type
-    <input class="input" name="type" placeholder="Type" />
-    Weight
-    <input class="input" name="weight" type="number" placeholder="1" step="0.1">
-    Weight Unit
-    <select class="input" name="weightUnit" selected="lbs">
+<form th:fragment="form" method="POST" action="listing/new" class="form-inline">
+
+    <input class="input form-control mb-2 mr-sm-2" name="type" placeholder="fruit type" />
+
+    <input class="input form-control mb-2 mr-sm-2" name="weight" type="number" placeholder="weight" step="0.1">
+    <label class="my-1 mr-2" for="weightUnit">Weight Unit</label>
+    <select class="input custom-select custom-select-sm my-1 mr-2" id="weightUnit" name="weightUnit" selected="lbs">
         <option>kgs</option>
         <option>lbs</option>
     </select>
-    Count
-    <input class="input" name="count" type="number" placeholder="1">
-    <input class="input" type="submit" />
+    <input class="input form-control my-1 mr-sm-2" name="count" type="number" placeholder="count">
+    <input class="btn btn-primary mb-2" type="submit" />
 </form>
