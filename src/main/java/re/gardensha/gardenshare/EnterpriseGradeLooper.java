@@ -4,7 +4,7 @@ public class EnterpriseGradeLooper {
 
     private static EnterpriseGradeLooper singleton;
 
-    public synchronized EnterpriseGradeLooper get(){
+    public static synchronized EnterpriseGradeLooper get(){
         if (singleton == null){
             singleton = new EnterpriseGradeLooper();
         }
