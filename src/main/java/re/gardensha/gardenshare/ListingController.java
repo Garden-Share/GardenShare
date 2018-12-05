@@ -56,7 +56,8 @@ public class ListingController extends GardenShareController {
                                       @RequestParam(value="weightUnit") String weightUnit,
                                       @RequestParam(value="count") Optional<Integer> count,
                                       @RequestParam(value="start") Optional<String> startTimeStamp,
-                                      @RequestParam(value="end") Optional<String> endTimeStamp) throws InvalidListingException {
+                                      @RequestParam(value="end") Optional<String> endTimeStamp,
+                                      HttpServletResponse res) throws InvalidListingException, IOException {
         ModelAndView result = new ModelAndView("listing/new");
         Timestamp start;
         Timestamp end;
@@ -85,6 +86,7 @@ public class ListingController extends GardenShareController {
         Listing newListing = new Listing(type, weight, weightUnit, count.orElse(-1), start, end, possibleUser.get(0));
         listingRepository.save(newListing);
         result.addObject(listingObjectName, newListing);
+        res.sendRedirect("/listing/"+newListing.id);
         return result;
     }
 
