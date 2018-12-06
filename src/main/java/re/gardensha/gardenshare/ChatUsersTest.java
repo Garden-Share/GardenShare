@@ -11,7 +11,7 @@ public class ChatUsersTest {
         User sender = new User("sender");
         User receiver = new User("receiver");
         ChatMessage chatMessage = new ChatMessage(null, null, sender, receiver, null);
-        assertEquals(testName, chatMessage.getSentUser().getName());
+        assertEquals(testName, chatMessage.getSentUser().getOAuthId());
     }
 
     @Test
@@ -20,6 +20,6 @@ public class ChatUsersTest {
         User sender = new User("sender");
         User receiver = new User("receiver");
         ChatMessage chatMessage = new ChatMessage(null, null, sender, receiver, null);
-        assertEquals(testName, chatMessage.getReceiveUser().getName());
+        assertEquals(testName, chatMessage.getReceiveUser().getOAuthId());
     }
 }
