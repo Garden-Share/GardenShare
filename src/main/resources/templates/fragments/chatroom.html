@@ -1,5 +1,10 @@
-<div class="chatPanel" th:fragment="room">
-   <span class="sender">Sender</span>
-   <span class="rDate">Date</span>
-   <p class="msgContent">Hey What's up!</p>
-</div>>
+<span th:each="room : ${chatroom}" th:fragment="room">
+   <a th:href="@{/message/{id}(id=${room?.getId()})}" style="color: black">
+      <div class="chatPanel">
+         <span th:unless="${user} == null">
+            <span class="sender" th:text="${room?.getOtherUserName(user?.getName())}"></span>
+            <span class="rDate" th:text="${room?.getLastMsg()}"></span>
+         </span>
+      </div>
+   </a>
+</span>

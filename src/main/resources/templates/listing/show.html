@@ -25,7 +25,7 @@
                         <a th:href="@{/user/{id}(id=${listing.getUser().getId()})}" th:text="${listing.getUser().getName()}" class="card-link text-success"></a>
                     </div>
                     <div class="col-6 text-right">
-                        <a th:href="@{/user/{id}(id=${listing.getUser().getId()})}" class="card-link text-success"><i class="material-icons">chat</i></a>
+                        <a th:href="@{/chat/compose/{id}(id=${listing.getUser().getId()})}" class="card-link text-success"><i class="material-icons">chat</i></a>
                     </div>
                 </div>
             </div>

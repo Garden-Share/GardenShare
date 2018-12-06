@@ -21,7 +21,7 @@
                               </p>
 
                               <a class="card-link text-success" th:if="${userPage == user}" href="/user/edit"><i class="material-icons">edit</i></a>
-                              <a class="card-link text-success" th:unless="${userPage == user}" th:href="@{/user/{id}(id=${userPage.getId()})}"><i class="material-icons">chat</i></a>
+                              <a class="card-link text-success" th:unless="${userPage == user}" th:href="@{/chat/compose/{id}(id=${userPage.getId()})}"><i class="material-icons">chat</i></a>
 
                             </div>
                         </div>
@@ -35,8 +35,10 @@
                 <div class="col-4">
                     <h4>Reviews</h4>
                     <table th:replace="reviews/table::table"></table>
-                    <hr/>
-                    <form th:replace="reviews/form::form"></form>
+                    <span th:unless="${userPage == user}">
+                        <hr/>
+                        <form th:replace="reviews/form::form"></form>
+                    </span>
                 </div>
             </div>
         </div>

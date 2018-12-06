@@ -1,0 +1,24 @@
+<div th:fragment="msg">
+   <div style="height: 77vh; padding: 10%">
+      <span th:each="msg : ${message}" class="row" style="margin-bottom: 8px;">
+         <div th:if="${#strings.equals(user?.getName(), msg?.getSentUser().getName())}" style="width:100%;">
+            <div class="speech-bubble-right" style="float:right">
+               <p th:text="${msg?.getContent()}"></p>
+            </div>
+         </div>
+
+         <div th:unless="${#strings.equals(user?.getName(), msg?.getSentUser().getName())}">
+            <div class="speech-bubble-left" style="float:left">
+               <p th:text="${msg?.getContent()}"></p>
+            </div>
+         </div>
+      </span>
+   </div>
+
+   <form style="
+            bottom: 10px; position:relative;" method="POST" id="form" th:fragment="form">
+      <input name="content" class="input form-control" placeholder="Write your message here">
+      <button style="background-color: #99ff7b; width: 10%; float: right;" class="input form-control btn btn-success"
+         type="submit" value="Send">Send</button>
+   </form>
+</div>
