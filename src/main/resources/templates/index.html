@@ -8,9 +8,24 @@
         </nav>
         <div class="container-fluid">
 
-            <form th:replace="fragments/listing_form::form">
-            </form>
-            <br />
+            <div class="card text-center" th:if="${user == null}">
+                <div class="card-header">
+                    <h2>
+                        Welcome to Garden Share!
+                    </h2>
+                </div>
+                <div class="card-body">
+                  <p class="card-text" style="font-size: 1.5em;">
+                        Gardenshare is a platform for you to buy, sell, or trade home grown produce.
+                        <br />
+                        Looking to buy? Simply browse the listings below.
+                        <br />
+                        Looking to sell? Create an account and then post your listings.
+                  </p>
+                  <a href="/user" class="btn btn-primary">Get Started</a>
+                </div>
+              </div>
+
 
             <!--<form th:replace="fragments/search_form::form">
             </form>-->

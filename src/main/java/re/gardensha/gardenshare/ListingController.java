@@ -48,6 +48,11 @@ public class ListingController extends GardenShareController {
         return null;
     }
 
+    @GetMapping(path="/listing/new")
+    public ModelAndView createListing() {
+        ModelAndView result = new ModelAndView("listing/new_entry");
+        return result;
+    }
     
     @PostMapping(path="/listing/new")
     public ModelAndView createListing(Principal userPrincipal,

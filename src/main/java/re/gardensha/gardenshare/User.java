@@ -21,6 +21,7 @@ public class User {
 
 	public User(String oauthId){
 		this.oauthId = oauthId;
+		this.name = "Gardenshare User";
 	}
 
 	public User(){
