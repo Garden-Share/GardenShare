@@ -59,4 +59,8 @@ public class ChatMessage {
    public Chat getChatRoom() {
       return chatRoom;
    }
+   
+   public User getReceiveUser() {
+	   return receiver;
+   }
 }
