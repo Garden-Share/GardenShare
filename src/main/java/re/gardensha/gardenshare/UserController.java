@@ -49,6 +49,7 @@ public class UserController extends GardenShareController {
             List<Listing> listings = listingRepo.findListingByCreatedBy(newUser);
             result.addObject(userPageListingName, listings);
             result.addObject(userPageReviewName, getReviews(newUser));
+            result.addObject("user", newUser); // The user isnt set yet because we just created them
             return result;
         } else {
             if (possibleMatching.size() != 1) {

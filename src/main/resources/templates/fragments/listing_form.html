@@ -1,14 +1,46 @@
-<form th:fragment="form" method="POST" action="listing/new" class="form-inline">
 
-    <input class="input form-control mb-2 mr-sm-2" name="type" placeholder="Fruit Type" />
-
-    <input class="input form-control mb-2 mr-sm-2" name="weight" type="number" placeholder="Weight" step="0.1">
-    <select class="input form-control custom-select mb-2 mr-sm-2" id="weightUnit" name="weightUnit" selected="lbs">
-        <option>lbs</option>
-        <option>kgs</option>
-        <option>ounces</option>
-        <option>cups</option>
-    </select>
-    <input class="input form-control mb-2 mr-sm-2" name="count" type="number" placeholder="Count">
-    <input class="btn btn-primary mb-2 mr-sm-2" type="submit" value="Create Listing" />
+<form th:fragment="form" method="POST" action="listing/new">
+    <div class="row">
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Produce Type</span>
+            </div>
+            <input name="name" class="form-control" placeholder="Apple" aria-label="Produce Type" aria-describedby="basic-addon1">
+        </div>
+    </div>
+    </br>
+    <div class="row">
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Weight</span>
+            </div>
+            <input type="number" name="weight" class="form-control" placeholder="2" aria-label="Weight" step="0.1" aria-describedby="basic-addon1">
+            <select class="form-control" name="weightUnit" selected="lbs">
+                <option>lbs</option>
+                <option>kgs</option>
+                <option>ounces</option>
+                <option>cups</option>
+            </select>
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Count</span>
+            </div>
+            <input class="form-control" name="count" type="number" placeholder="1" min="1">
+        </div>
+    </div>
+    <br />
+    <div class="row">
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">Postal Code</span>
+                </div>
+            <input class="form-control" name="postalCode" type="number" placeholder="93410" min="1" max="99999">
+        </div>
+    </div>
+    <br />
+    <input class="btn btn-success mb-2 mr-sm-2" type="submit" value="Create Listing" />
 </form>

@@ -48,9 +48,15 @@ public class ListingController extends GardenShareController {
         return null;
     }
 
+    @GetMapping(path = "/listing/new")
+    public ModelAndView createListing() {
+        return new ModelAndView("listing/new_entry");
+    }
+
     @PostMapping(path = "/listing/new")
     public ModelAndView createListing(Principal userPrincipal, @RequestParam(value = "type") String type,
             @RequestParam(value = "weight") float weight, @RequestParam(value = "weightUnit") String weightUnit,
+            @RequestParam(value = "postalCode") Optional<String> postalCode,
             @RequestParam(value = "count") Optional<Integer> count,
             @RequestParam(value = "start") Optional<String> startTimeStamp,
             @RequestParam(value = "end") Optional<String> endTimeStamp, HttpServletResponse res)
@@ -75,13 +81,19 @@ public class ListingController extends GardenShareController {
             throw new InvalidListingException("Start or end date had an invalid date format");
         }
 
+        if (userPrincipal == null) {
+            res.sendRedirect("/");
+            return null;
+        }
+
         List<User> possibleUser = userRepository.findUserByOauthId(userPrincipal.getName());
         if (possibleUser.size() != 1) {
             throw new InvalidListingException("Could not find creator as valid user in database");
         }
 
         Listing newListing = new Listing(type, weight, weightUnit, count.orElse(-1), start, end, possibleUser.get(0));
-        listingRepository.save(newListing);
+        newListing.setPostalCode(postalCode.orElse(""));
+               listingRepository.save(newListing);
         result.addObject(listingObjectName, newListing);
         res.sendRedirect("/listing/" + newListing.id);
         return result;
@@ -99,7 +111,7 @@ public class ListingController extends GardenShareController {
         if (listing.isPresent() && listing.get().getUser().getId() == user.getId()) {
             listingRepository.delete(listing.get());
         }
-        res.sendRedirect("/");
+        res.sendRedirect("/"); 
     }
 
     private Timestamp parseTime(String timeStamp) throws ParseException {

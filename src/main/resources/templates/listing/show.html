@@ -13,20 +13,19 @@
                         <h5 th:text="${listing.getType()}"></h5>
                     </div>
                     <div class="col-6 text-right" th:if="${listing.getUser() == user}">
-                        <a th:href="@{/listing/{id}/delete(id=${listing.id})}" class="card-link"><i class="material-icons">delete</i></a>
+                        <a th:href="@{/listing/{id}/delete(id=${listing.id})}" class="card-link"><i class="material-icons text-danger">delete</i></a>
                     </div>
                 </div>
                 <p>Quantity: <b th:text="${listing.getCount()}"></b></p>
 
                 <p>Weight: <b th:text="${listing.getWeightString()}"></b></p>
 
-                <p th:text="${listing.getUser().getName()}"></p>
                 <div class="row">
                     <div class="col-6">
-                        <a th:href="@{/user/{id}(id=${listing.getUser().getId()})}" class="card-link">Creator</a>
+                        <a th:href="@{/user/{id}(id=${listing.getUser().getId()})}" th:text="${listing.getUser().getName()}" class="card-link text-success"></a>
                     </div>
                     <div class="col-6 text-right">
-                        <a th:href="@{/user/{id}(id=${listing.getUser().getId()})}" class="card-link"><i class="material-icons">chat</i></a>
+                        <a th:href="@{/user/{id}(id=${listing.getUser().getId()})}" class="card-link text-success"><i class="material-icons">chat</i></a>
                     </div>
                 </div>
             </div>

@@ -19,6 +19,7 @@ public class Listing {
     private String fruitType = "";
     private Float weight = 0f;
     private String weightUnit = "lbs";
+    private String postalCode;
     private Integer count = 0;
     private Boolean ended = false;
     private Timestamp startTime;
@@ -89,4 +90,14 @@ public class Listing {
         return dateFormat.format(endTime);
     }
 
+    public String getPostalCode() {
+        return postalCode;
+    }
+
+    public void setPostalCode(String postalCode) {
+        this.postalCode = postalCode;
+
+    }
+
 }
+ 

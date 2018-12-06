@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+    <head th:replace="fragments/includes :: head">
+    </head>
+
+    <body>
+        <nav th:replace="fragments :: nav">
+        </nav>
+        <div class="container-fluid text-center">
+            <h1>Something went wrong! Error Code <span th:text="${code}"></span></h1>
+            <h2>Our Engineers (read monkeys) are on it</h2>
+        </div>
+    </body>
+</html>

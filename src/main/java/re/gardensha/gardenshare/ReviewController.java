@@ -23,7 +23,7 @@ public class ReviewController extends GardenShareController {
     private UserRepository userRepository;
 
     @GetMapping("/user/review/{id}")
-    public Review getReview(@PathVariable(name="id") Integer id, HttpServletResponse res) throws IOException{
+    public Review getReview(@PathVariable(name = "id") Integer id, HttpServletResponse res) throws IOException {
         Optional<Review> review = reviewRepository.findById(id);
         if (review.isPresent()) {
             return review.get();
@@ -33,11 +33,9 @@ public class ReviewController extends GardenShareController {
     }
 
     @GetMapping("/user/review/new")
-    public Review createReview(Principal user,
-                               @RequestParam(value="message") String message,
-                               @RequestParam(value="user") Integer userId,
-                               @RequestParam(value="rating") Integer rating,
-                               HttpServletResponse res) throws InvalidReviewException, IOException {
+    public Review createReview(Principal user, @RequestParam(value = "message") String message,
+            @RequestParam(value = "user") Integer userId, @RequestParam(value = "rating") Integer rating,
+            HttpServletResponse res) throws InvalidReviewException, IOException {
         List<User> potentialUser = userRepository.findUserByOauthId(user.getName());
         if (potentialUser.size() != 1) {
             res.sendError(500, "Invalid user for reviewer");
@@ -56,6 +54,7 @@ public class ReviewController extends GardenShareController {
         }
         Review newReview = new Review(message, rating, reviewee, reviewer);
         reviewRepository.save(newReview);
+        res.sendRedirect("/user/" + reviewee.getId());
         return newReview;
     }
 
