@@ -21,7 +21,7 @@
                               </p>
 
                               <a class="card-link text-success" th:if="${userPage == user}" href="/user/edit"><i class="material-icons">edit</i></a>
-                              <a class="card-link text-success" th:unless="${userPage == user}" th:href="@{/user/{id}(id=${userPage.getId()})}"><i class="material-icons">chat</i></a>
+                              <a class="card-link text-success" th:unless="${userPage == user}" th:href="@{/chat/compose/{id}(id=${userPage.getId()})}"><i class="material-icons">chat</i></a>
 
                             </div>
                         </div>

@@ -2,7 +2,6 @@ package re.gardensha.gardenshare;
 
 import java.io.IOException;
 import java.security.Principal;
-import java.sql.Timestamp;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -38,7 +37,6 @@ public class ChatController extends GardenShareController {
    @GetMapping(path = "/message")
    public ModelAndView getMessage(Principal userPrincipal, HttpServletResponse res) {
       ModelAndView result = new ModelAndView("message");
-      System.out.println("hello?");
 
       List<Chat> chatRoom = chatRepo.findChatRoomByOauthId(userPrincipal.getName());
       if (!chatRoom.isEmpty()) {
@@ -149,8 +147,6 @@ public class ChatController extends GardenShareController {
          throw new InvalidUserException("Could not find creator as valid user in database");
       }
 
-      User user = possibleUser.get(0);
-
-      return user;
+      return possibleUser.get(0);
    }
 }
