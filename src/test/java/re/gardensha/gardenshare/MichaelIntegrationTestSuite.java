@@ -6,11 +6,7 @@ import org.junit.runners.Suite;
 @RunWith(Suite.class)
 
 @Suite.SuiteClasses({
-    GardenshareApplicationTests.class,
-    HealthTest.class,
-    IndexTest.class,
-    ListingControllerTest.class,
-    ReviewControllerTest.class
+    ChatController.class
 })
 
 public class MichaelIntegrationTestSuite {
