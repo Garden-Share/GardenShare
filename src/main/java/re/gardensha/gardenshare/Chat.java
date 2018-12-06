@@ -37,16 +37,16 @@ public class Chat {
          return this.userTwo;
    }
 
+   public String getSender() {
+      return userOne;
+   }
+
+   public String getReceiver() {
+      return this.userTwo;
+   }
+
    public Time getLastMsg() {
       return lastMsg;
    }
-
-   // public void setMessageRead(boolean read) {
-   // this.read = read;
-   // }
-
-   // public boolean getMessageRead() {
-   // return this.read;
-   // }
 
 }
