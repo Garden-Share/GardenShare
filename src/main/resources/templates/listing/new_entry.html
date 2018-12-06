@@ -6,10 +6,15 @@
     <body>
         <nav th:replace="fragments :: nav">
         </nav>
-        <div class="container-fluid">
-
-            <form th:replace="fragments/listing_form::form">
-            </form>
+        <div class="container-fluid text-center">
+            <h3>Create a <i class="material-icons">fiber_new</i> listing</h3>
+            <div class="row">
+                <div class="col-2"></div>
+                <div class="col-8">
+                    <form th:replace="fragments/listing_form::form">
+                    </form>
+                </div>
+            </div>
         </div>
     </body>
 </html>

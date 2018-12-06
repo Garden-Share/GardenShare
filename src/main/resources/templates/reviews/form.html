@@ -8,5 +8,5 @@
     <input class="input form-control" name="rating" type="number" placeholder="5" step="1" min="1" max="5">
     <br />
     <input class="input form-control" type="hidden" name="user" th:value="${userPage.getId()}">
-    <button class="input form-control btn btn-primary" onclick="$.get('review/new?' + $('#review-form').serialize());">Review</button>
+    <button class="input form-control btn btn-success" onclick="$.get('review/new?' + $('#review-form').serialize());">Review</button>
 </form>
