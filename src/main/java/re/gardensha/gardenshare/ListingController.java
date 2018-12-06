@@ -78,6 +78,10 @@ public class ListingController extends GardenShareController {
             throw new InvalidListingException("Start or end date had an invalid date format");
         }
 
+        if (userPrincipal == null){
+            res.sendRedirect("/");
+        }
+
         List<User> possibleUser = userRepository.findUserByOauthId(userPrincipal.getName());
         if (possibleUser.size() != 1){
             throw new InvalidListingException("Could not find creator as valid user in database");
