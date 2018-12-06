@@ -22,7 +22,7 @@ public class EnterpriseGradeLooper {
 
     // Uses a very advanced technique to calculate the sum of all integers up to and including n
     public int sum(int n){
-        int result = 1;
+        int result = 0;
         for (int i = 1; i <= n; i++){
             result += i;
         }
