@@ -13,7 +13,7 @@ public class ListingTest{
     @Test
     public void testListingInitialization(){
         String testFruitName = "Apples";
-        Listing listing = new Listing(testFruitName, 0.5f, "kg", 5, "93410", new Timestamp(System.currentTimeMillis()), new Timestamp(System.currentTimeMillis()), new User("Hi"));
+        Listing listing = new Listing(testFruitName, 0.5f, "kg", 5, new Timestamp(System.currentTimeMillis()), new Timestamp(System.currentTimeMillis()), new User("Hi"));
         
         assertEquals(testFruitName, listing.getType());
     }

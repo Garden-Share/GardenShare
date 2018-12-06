@@ -5,14 +5,19 @@
             <ul class="navbar-nav">
                 <a class="navbar-brand" th:href="@{/}">Garden Share</a>
                 <img src="/logo.svg" width="30" height="30" class="mt-1 mr-2">
-                <li class="nav-item">
-                    <a class="nav-link" th:href="@{/message}"><i class="material-icons">chat</i></a>
-                </li>
             </ul>
 
             <ul class="navbar-nav ml-auto mr-5">
                 <li class="nav-item" th:if="${user} == null">
                     <a class="nav-link" href="/user" >Sign In</a>
+                </li>
+                <li class="nav-item" th:unless="${user} == null" style="border-right: 1px dashed darkgrey;">
+                    <a class="nav-link" href="/listing/new">
+                        <i class="material-icons">add</i>
+                    </a>
+                </li>
+                <li class="nav-item" style="border-right: 1px dashed darkgrey;" th:unless="${user} == null">
+                    <a class="nav-link" th:href="@{/message}"><i class="material-icons">chat</i></a>
                 </li>
                 <li class="nav-item dropdown" th:unless="${user} == null">
                   <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown" th:text="${user.getName()}">

@@ -1,6 +1,7 @@
 <!-- Parameter is listing -->
 <span th:fragment="listing">
     <td class="text-primary"><a class="text-success" th:text="${listing.getUser().getName()}" th:href="@{/user/{id}(id=${listing.getUser().getId()})}"></a></td>
+    <td th:text="${listing.getPostalCode()}"></td>
     <td class="text-primary"><a class="text-success" th:text="${listing.getType()}" th:href="@{/listing/{id}(id=${listing.id})}"></a></td>
     <td th:text="${listing.getWeightString()}"></td>
     <td th:text="${listing.getCount()}"></td>

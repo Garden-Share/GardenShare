@@ -10,4 +10,5 @@
 
     <button class="input form-control btn btn-success mr-4" onclick="$.get('review/new?' + $('#review-form').serialize());">Review</button>
     <input class="input form-control" type="hidden" name="user" th:value="${userPage.getId()}">
+    <button class="input form-control btn btn-success" onclick="$.get('review/new?' + $('#review-form').serialize());">Review</button>
 </form>

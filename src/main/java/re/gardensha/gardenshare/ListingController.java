@@ -48,6 +48,10 @@ public class ListingController extends GardenShareController {
         return null;
     }
 
+    @GetMapping(path="/listing/new")
+    public ModelAndView createListing() {
+        return new ModelAndView("listing/new_entry");
+    }
     
     @PostMapping(path="/listing/new")
     public ModelAndView createListing(Principal userPrincipal,
@@ -89,7 +93,8 @@ public class ListingController extends GardenShareController {
             throw new InvalidListingException("Could not find creator as valid user in database");
         }
 
-        Listing newListing = new Listing(type, weight, weightUnit, count.orElse(-1), postalCode.orElse(""), start, end, possibleUser.get(0));
+        Listing newListing = new Listing(type, weight, weightUnit, count.orElse(-1), start, end, possibleUser.get(0));
+        newListing.setPostalCode(postalCode.orElse(""));
         listingRepository.save(newListing);
         result.addObject(listingObjectName, newListing);
         res.sendRedirect("/listing/"+newListing.id);
