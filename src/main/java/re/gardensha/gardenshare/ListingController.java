@@ -81,6 +81,7 @@ public class ListingController extends GardenShareController {
 
         if (userPrincipal == null){
             res.sendRedirect("/");
+            return null;
         }
 
         List<User> possibleUser = userRepository.findUserByOauthId(userPrincipal.getName());
