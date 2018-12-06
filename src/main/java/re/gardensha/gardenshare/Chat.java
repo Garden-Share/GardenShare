@@ -17,7 +17,6 @@ public class Chat {
    private Date lastMsg;
    private String userOneName;
    private String userTwoName;
-   // private boolean read;
 
    public Chat() {
    }
