@@ -59,6 +59,7 @@ public class ReviewController extends GardenShareController {
         }
         Review newReview = new Review(message, rating, reviewee, reviewer);
         reviewRepository.save(newReview);
+        res.sendRedirect("/user/"+reviewee.getId());
         return newReview;
     }
 
