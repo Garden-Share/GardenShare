@@ -37,7 +37,6 @@ public class Listing {
                    float weight,
                    String weightUnit,
                    int count,
-                   String postalCode,
                    Timestamp startTime,
                    Timestamp endTime,
                    User createdBy){
@@ -48,7 +47,6 @@ public class Listing {
         this.startTime = startTime;
         this.endTime = endTime;
         this.createdBy = createdBy;
-        this.postalCode = postalCode;
     }
 
     public String toString() {
@@ -99,6 +97,10 @@ public class Listing {
 
     public String getPostalCode(){
         return postalCode;
+    }
+
+    public void setPostalCode(String postalCode) {
+        this.postalCode = postalCode;
     }
 
 }
