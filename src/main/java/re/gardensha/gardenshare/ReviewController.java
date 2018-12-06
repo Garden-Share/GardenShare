@@ -52,6 +52,9 @@ public class ReviewController extends GardenShareController {
             // If the rating is not in the 1-5 range
             throw new InvalidReviewException("Rating was not between 1 and 5");
         }
+        if (reviewer.equals(reviewee)) {
+            throw new InvalidReviewException("You cannot review yourself!");
+        }
         Review newReview = new Review(message, rating, reviewee, reviewer);
         reviewRepository.save(newReview);
         res.sendRedirect("/user/" + reviewee.getId());

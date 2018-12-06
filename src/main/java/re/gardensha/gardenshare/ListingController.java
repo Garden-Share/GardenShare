@@ -93,7 +93,7 @@ public class ListingController extends GardenShareController {
 
         Listing newListing = new Listing(type, weight, weightUnit, count.orElse(-1), start, end, possibleUser.get(0));
         newListing.setPostalCode(postalCode.orElse(""));
-               listingRepository.save(newListing);
+        listingRepository.save(newListing);
         result.addObject(listingObjectName, newListing);
         res.sendRedirect("/listing/" + newListing.id);
         return result;
@@ -111,7 +111,7 @@ public class ListingController extends GardenShareController {
         if (listing.isPresent() && listing.get().getUser().getId() == user.getId()) {
             listingRepository.delete(listing.get());
         }
-        res.sendRedirect("/"); 
+        res.sendRedirect("/");
     }
 
     private Timestamp parseTime(String timeStamp) throws ParseException {
