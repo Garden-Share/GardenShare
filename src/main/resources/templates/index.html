@@ -14,11 +14,18 @@
 
             <!--<form th:replace="fragments/search_form::form">
             </form>-->
+            <div id="jumbotron" class="jumbotron collapse show">
+              <h1 class="display-4">Welcome to GardenShare</h1>
+              <p class="lead">At GardenShare, we strive to give you fresh foods every day!</p>
+              <hr class="my-4">
+              <p>Is this your first time here? Click "Explore the Garden" to begin browsing produce near you! Already a user? Welcome back!</p>
+              <button class="btn btn-outline-success btn-lg" data-toggle="collapse" data-target="#jumbotron">Explore the Garden</button>
+            </div>
 
             <table th:replace="listing/table::table" id="listingTable" class="table">
             </table>
         </div>
-   
+
         <div>
             <script>
                 $(document).ready(function () {

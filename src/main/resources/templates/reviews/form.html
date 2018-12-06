@@ -1,12 +1,13 @@
 <form id="review-form" th:fragment="form" method="GET" action="review/new">
-    Message
-    <br />
-    <input type="textarea" class="input form-control" name="message" placeholder="They had delicious/disgusting produce because..." />
-    <br />
-    Rating
-    <br />
-    <input class="input form-control" name="rating" type="number" placeholder="5" step="1" min="1" max="5">
-    <br />
+    <div class="form-group">
+    <label for="reviewMsg">Message</label>
+    <input id="reviewMsg" type="textarea" class="input form-control" name="message" placeholder="They had delicious/disgusting produce because..." />
+    </div>
+    <div class="form-group">
+    <label for="reviewRating">Rating</label>
+    <input id="reviewRating" class="input form-control" name="rating" type="number" placeholder="5" step="1" min="1" max="5">
+    </div>
+
+    <button class="input form-control btn btn-success mr-4" onclick="$.get('review/new?' + $('#review-form').serialize());">Review</button>
     <input class="input form-control" type="hidden" name="user" th:value="${userPage.getId()}">
-    <button class="input form-control btn btn-primary" onclick="$.get('review/new?' + $('#review-form').serialize());">Review</button>
 </form>

@@ -9,28 +9,33 @@
         <br />
         <div class="container-fluid">
             <div class="row">
-                <div class="col-2">
-                        <div class="card text-center">
-                            <h4 class="card-title">
-                                <b th:text="${userPage.getName()}"></b>
-                                <a th:if="${userPage == user}" href="/user/edit"><i class="material-icons">edit</i></a>
-                                <a th:unless="${userPage == user}" th:href="@{/user/{id}(id=${userPage.getId()})}"><i class="material-icons">chat</i></a>
-                            </h4>
-                            <em th:text="${userPage.getEmail()}"></em>
-                            <p class="card-body" th:text="${userPage.getDescription()}">
-                            </p>
-                            <br />
+                <div class="col-3">
+                        <h4>Biography</h4>
+                        <div class="card border-success">
+                            <div class="card-body">
+                              <h5 class="card-title">
+                                  <b th:text="${userPage.getName()}"></b>
+                              </h5>
+                              <h6 class="card-subtitle text-muted mb-2" th:text="${userPage.getEmail()}"></h6>
+                              <p class="card-text" th:text="${userPage.getDescription()}">
+                              </p>
+
+                              <a class="card-link text-success" th:if="${userPage == user}" href="/user/edit"><i class="material-icons">edit</i></a>
+                              <a class="card-link text-success" th:unless="${userPage == user}" th:href="@{/user/{id}(id=${userPage.getId()})}"><i class="material-icons">chat</i></a>
+
+                            </div>
                         </div>
                 </div>
                 <br />
                 <div class="col-5">
+                    <h4>Listings</h4>
                     <table th:replace="listing/table::table" id="listingTable" class="table">
                     </table>
                 </div>
-                <div class="col-5">
+                <div class="col-4">
+                    <h4>Reviews</h4>
                     <table th:replace="reviews/table::table"></table>
-                    <br />
-                    <br />
+                    <hr/>
                     <form th:replace="reviews/form::form"></form>
                 </div>
             </div>
