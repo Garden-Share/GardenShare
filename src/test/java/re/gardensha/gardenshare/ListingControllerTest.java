@@ -27,7 +27,7 @@ public class ListingControllerTest {
     @Test
     public void postingAListingWithNoParametersShouldNotAddListing() throws Exception {
         long listingCount = listingRepository.count();
-        this.restTemplate.postForObject("http://localhost:" + port + "/lisiting/new", null, String.class);
+        this.restTemplate.postForObject("http://localhost:" + port + "/listing/new", null, String.class);
         assertThat(listingCount).isEqualTo(listingRepository.count());
     }
 
