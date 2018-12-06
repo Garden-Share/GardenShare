@@ -16,21 +16,25 @@ public class ChatMessage {
    public Integer id;
    private String content;
    private Time sendTime;
-   private Time receivedTime;
 
    @OneToOne
-   @JoinColumn(name = "fk_userid")
-   private User sentBy;
+   @JoinColumn(name = "fk_sender")
+   private User sender;
 
    @OneToOne
-   @JoinColumn(name = "fk_chatRoomid")
+   @JoinColumn(name = "fk_receiver")
+   private User receiver;
+
+   @OneToOne
+   @JoinColumn(name = "fk_chatroomid")
    private Chat chatRoom;
 
-   public ChatMessage(String content, Time sendTime, User sentBy, Chat chatRoom) {
+   public ChatMessage(String content, Time sendTime, User sender, User receiver, Chat chatRoom) {
       this.content = content;
       this.sendTime = sendTime;
-      this.sentBy = sentBy;
+      this.sender = sender;
       this.chatRoom = chatRoom;
+      this.receiver = receiver;
    }
 
    public String getContent() {
@@ -41,19 +45,11 @@ public class ChatMessage {
       return sendTime;
    }
 
-   public Time getReceivedTime() {
-      return receivedTime;
-   }
-
    public User getSentUser() {
-      return sentBy;
+      return sender;
    }
 
    public Chat getChatRoom() {
       return chatRoom;
-   }
-
-   public void setReceivedTime(Time receivedTime) {
-      this.receivedTime = receivedTime;
    }
 }

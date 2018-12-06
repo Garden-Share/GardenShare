@@ -1,0 +1,25 @@
+<html>
+
+<head th:replace="fragments/includes :: head">
+</head>
+
+<body>
+   <nav th:replace="fragments :: nav">
+   </nav>
+
+   <br />
+   <div class="container-fluid" style="padding: 5% 20% ">
+      <form id="form" th:fragment="form" method="POST">
+         <h2 th:text=" 'Write a message to ' + ${userPage?.getName()}"></h2>
+         Message
+         <br />
+         <textarea class="input form-control" rows="10" name="content" placeholder="Type your message here..."></textarea>
+         <br />
+
+         <input class="input form-control" type="hidden" name="id" th:value="${userPage?.getId()}">
+         <input class="input form-control btn btn-primary" type="submit" value="Send" style="width: 10%; float: right;"></input>
+      </form>
+   </div>
+</body>
+
+</html>

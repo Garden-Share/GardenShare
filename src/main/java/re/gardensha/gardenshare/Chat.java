@@ -12,34 +12,41 @@ public class Chat {
    @Id
    @GeneratedValue(strategy = GenerationType.AUTO)
    private Integer id;
-   private String me;
-   private String you;
+   private String userOne;
+   private String userTwo;
    private Time lastMsg;
+   // private boolean read;
 
    public Chat() {
    }
 
-   public Chat(String me, String you, Time lastMsg) {
-      this.me = me;
-      this.you = you;
+   public Chat(String userOne, String userTwo, Time lastMsg) {
+      this.userOne = userOne;
+      this.userTwo = userTwo;
       this.lastMsg = lastMsg;
-
    }
 
-   public int getId() {
+   public Integer getId() {
       return id;
    }
 
-   public String getReceiver() {
-      return you;
-   }
-
-   public String getSender() {
-      return me;
+   public String getUser(String oAuthId) {
+      if (this.userOne.equals(oAuthId))
+         return this.userOne;
+      else
+         return this.userTwo;
    }
 
    public Time getLastMsg() {
       return lastMsg;
    }
+
+   // public void setMessageRead(boolean read) {
+   // this.read = read;
+   // }
+
+   // public boolean getMessageRead() {
+   // return this.read;
+   // }
 
 }
