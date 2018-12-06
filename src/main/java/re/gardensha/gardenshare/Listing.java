@@ -18,6 +18,7 @@ public class Listing {
     private String	 	fruitType = "";
     private Float 	    weight = 0f;
     private String      weightUnit = "lbs";
+    private String postalCode;
 	private Integer 	count = 0;
 	private Boolean 	ended = false;
 	private Timestamp 		startTime;
@@ -36,6 +37,7 @@ public class Listing {
                    float weight,
                    String weightUnit,
                    int count,
+                   String postalCode,
                    Timestamp startTime,
                    Timestamp endTime,
                    User createdBy){
@@ -46,6 +48,7 @@ public class Listing {
         this.startTime = startTime;
         this.endTime = endTime;
         this.createdBy = createdBy;
+        this.postalCode = postalCode;
     }
 
     public String toString() {
@@ -92,6 +95,10 @@ public class Listing {
     public String getFormattedEndDate(){
         DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
         return dateFormat.format(endTime);
+    }
+
+    public String getPostalCode(){
+        return postalCode;
     }
 
 }
