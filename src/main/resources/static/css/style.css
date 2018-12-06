@@ -21,7 +21,8 @@
 .chatPanel {
    border-top: 1px solid rgba(37, 37, 37, 0.1);
    border-bottom: 1px solid rgba(61, 61, 61, 0.1);
-   padding: 15px;
+   padding: 1em;
+   padding-bottom: 3em;
 }
 
 .chatPanel:hover {

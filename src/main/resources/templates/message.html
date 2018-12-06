@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 
-<html lang="en" xmlns:th="http://www.thymeleaf.org/">
-
 <head th:replace="fragments/includes::head">
 </head>
 
@@ -18,18 +16,7 @@
             </div>
       </div>
 
-      <div>
-            <script>
-                  $(document).ready(function () {
-                        $('#listingTable').DataTable();
-                        $('.dataTables_length').addClass('bs-select');
-                        $('.pagination').addClass('pg-teal');
-                  });
-            </script>
-      </div>
       <div th:replace="fragments/scripts::scripts">
-      </div>
-      <div th:replace="fragments/scripts::tableScripts">
       </div>
 </body>
 
