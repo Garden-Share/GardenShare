@@ -2,8 +2,9 @@ package re.gardensha.gardenshare;
 
 import java.io.IOException;
 import java.security.Principal;
+import java.sql.Timestamp;
+import java.util.Calendar;
 import java.util.Date;
-import java.sql.Time;
 import java.util.List;
 import java.util.Optional;
 
@@ -14,7 +15,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -35,14 +35,10 @@ public class ChatController extends GardenShareController {
    private static String chatMessageObjectName = "message";
    private static String userObjectName = "userPage";
 
-   @RequestMapping("/message")
-   public String message() {
-      return "message";
-   }
-
    @GetMapping(path = "/message")
    public ModelAndView getMessage(Principal userPrincipal, HttpServletResponse res) {
-      ModelAndView result = new ModelAndView("message/room");
+      ModelAndView result = new ModelAndView("message");
+      System.out.println("hello?");
 
       List<Chat> chatRoom = chatRepo.findChatRoomByOauthId(userPrincipal.getName());
       if (!chatRoom.isEmpty()) {
@@ -50,36 +46,44 @@ public class ChatController extends GardenShareController {
          return result;
       }
 
-      return null;
+      return result;
    }
 
    // sending message
    @PostMapping(value = "/message/{chatid}")
-   public ModelAndView sendMessage(@PathVariable(value = "chatid") int chatId, Principal userPrincipal,
-         @RequestBody Message msg, HttpServletResponse res) throws RoomNotFoundException, InvalidUserException {
-      ModelAndView result = new ModelAndView("message/" + chatId);
-
+   public ModelAndView sendMessage(@PathVariable(value = "chatid") int chatId,
+         @RequestParam(value = "content") String content, Principal userPrincipal, HttpServletResponse res)
+         throws RoomNotFoundException, InvalidUserException, IOException {
+      ModelAndView result = new ModelAndView("eachMsg");
       Optional<Chat> room = chatRepo.findById(chatId);
       if (!room.isPresent()) {
-         throw new RoomNotFoundException("The message has been deleted or does not exist.");
+         throw new RoomNotFoundException("The room has been deleted or does not exist.");
       }
 
-      Date date = new Date();
+      Date time = Calendar.getInstance().getTime();
       Chat curRoom = room.get();
 
       User sender = findUser(userPrincipal.getName());
-      User receiver = findUser(curRoom.getUser(msg.getUserId()));
+      User receiver = findUser(curRoom.getOtherUser(userPrincipal.getName()));
 
-      ChatMessage newChatMsg = new ChatMessage(msg.getContent(), new Time(date.getTime()), sender, receiver, curRoom);
+      ChatMessage newChatMsg = new ChatMessage(content, time, sender, receiver, curRoom);
       chatMsgRepo.save(newChatMsg);
       result.addObject(chatMessageObjectName, newChatMsg);
+      res.sendRedirect("/message/" + chatId);
 
       return result;
    }
 
-   @GetMapping(value = "/message/{chatid}")
-   public ModelAndView getMessage(@PathVariable(value = "chatid") int chatId, HttpServletResponse res) {
-      ModelAndView result = new ModelAndView("message/" + chatId);
+   @GetMapping(path = "/message/{chatid}")
+   public ModelAndView getMessage(@PathVariable("chatid") int chatId, Principal userPrincipal,
+         HttpServletResponse res) {
+      ModelAndView result = new ModelAndView("eachMsg");
+
+      List<Chat> rooms = chatRepo.findChatRoomByOauthId(userPrincipal.getName());
+
+      if (!rooms.isEmpty()) {
+         result.addObject(chatRoomObjectName, rooms);
+      }
 
       List<ChatMessage> msgs = chatMsgRepo.findMessageByRoomId(chatId);
       result.addObject(chatMessageObjectName, msgs);
@@ -112,18 +116,20 @@ public class ChatController extends GardenShareController {
       Optional<User> otherUser = userRepo.findById(id);
 
       if (otherUser.isPresent()) {
-         Date date = new Date();
-         Time cur = new Time(date.getTime());
+         Date time = Calendar.getInstance().getTime();
          String userTwoOauthId = otherUser.get().getOAuthId();
+         User me = findUser(user.getName());
 
-         Chat room = new Chat(user.getName(), userTwoOauthId, cur);
+         Chat room = new Chat(user.getName(), userTwoOauthId, time);
+         room.setName(user.getName(), me.getName());
+         room.setName(userTwoOauthId, otherUser.get().getName());
 
          chatRepo.save(room);
          List<User> curUser = userRepo.findUserByOauthId(user.getName());
          if (curUser.size() != 1)
             throw new InvalidUserException("User not found");
 
-         ChatMessage newMsg = new ChatMessage(content, cur, curUser.get(0), otherUser.get(), room);
+         ChatMessage newMsg = new ChatMessage(content, time, curUser.get(0), otherUser.get(), room);
          chatMsgRepo.save(newMsg);
 
          result.addObject(chatRoomObjectName, room);

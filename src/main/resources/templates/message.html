@@ -1,39 +1,36 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
-    <head>
-      <meta charset="UTF-8" />
-      <style>
-         @media (min-width: 980px) { body { padding-top: 75px; } }
-         
-      </style>
-      <link rel="stylesheet" th:href="@{/css/style.css}">
-      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
-            integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous" />
-      <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
-            integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
-            integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 
-      
-    </head>
-    <html lang="en" xmlns:th="http://www.thymeleaf.org/">
-    <head th:replace="fragments/includes :: head">
-    </head>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
 
-    <body>
-        <nav th:replace="fragments :: nav">
-        </nav>
+<head th:replace="fragments/includes::head">
+</head>
 
-        <!-- <div th:replace="fragments/chatroom::div"></div> -->
-        <div class="container">
+<body>
+      <nav th:replace="fragments::nav">
+      </nav>
+
+      <div class="container">
             <div class="col-3 RoomList" style="padding: 0;">
-               <div>
-                  <span th:replace="fragments/chatroom::room"></span>
-               </div>
+                  <div>
+                        <span th:replace="fragments/chatroom::room"></span>
+                  </div>
             </div>
-         </div>
-    </body>
+      </div>
+
+      <div>
+            <script>
+                  $(document).ready(function () {
+                        $('#listingTable').DataTable();
+                        $('.dataTables_length').addClass('bs-select');
+                        $('.pagination').addClass('pg-teal');
+                  });
+            </script>
+      </div>
+      <div th:replace="fragments/scripts::scripts">
+      </div>
+      <div th:replace="fragments/scripts::tableScripts">
+      </div>
+</body>
 
 </html>

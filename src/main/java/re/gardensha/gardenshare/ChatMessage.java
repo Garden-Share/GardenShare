@@ -1,6 +1,6 @@
 package re.gardensha.gardenshare;
 
-import java.sql.Time;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,7 +15,7 @@ public class ChatMessage {
    @GeneratedValue(strategy = GenerationType.AUTO)
    public Integer id;
    private String content;
-   private Time sendTime;
+   private Date sendTime;
 
    @OneToOne
    @JoinColumn(name = "fk_sender")
@@ -29,7 +29,10 @@ public class ChatMessage {
    @JoinColumn(name = "fk_chatroomid")
    private Chat chatRoom;
 
-   public ChatMessage(String content, Time sendTime, User sender, User receiver, Chat chatRoom) {
+   public ChatMessage() {
+   }
+
+   public ChatMessage(String content, Date sendTime, User sender, User receiver, Chat chatRoom) {
       this.content = content;
       this.sendTime = sendTime;
       this.sender = sender;
@@ -37,11 +40,15 @@ public class ChatMessage {
       this.receiver = receiver;
    }
 
+   public Integer getId() {
+      return this.id;
+   }
+
    public String getContent() {
       return content;
    }
 
-   public Time getSendTime() {
+   public Date getSendTime() {
       return sendTime;
    }
 

@@ -2,7 +2,7 @@ package re.gardensha.gardenshare;
 
 import static org.junit.Assert.assertEquals;
 
-import java.sql.Time;
+import java.sql.Timestamp;
 
 import org.junit.Test;
 
@@ -27,7 +27,7 @@ public class ChatTest {
 		User user2 = new User("oauth2");
 		Chat chat = new Chat(user1.getOAuthId(), user2.getOAuthId(), null);
 
-		ChatMessage chatM = new ChatMessage("The message", new Time(0), user1, user2, chat);
+		ChatMessage chatM = new ChatMessage("The message", new Timestamp(System.currentTimeMillis()), user1, user2, chat);
 		assertEquals(chat, chatM.getChatRoom());
 		assertEquals("The message", chatM.getContent());
 		assertEquals(user1, chatM.getSentUser());

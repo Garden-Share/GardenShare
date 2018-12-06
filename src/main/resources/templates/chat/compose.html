@@ -1,6 +1,7 @@
-<html>
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
 
-<head th:replace="fragments/includes :: head">
+<head th:replace="fragments/includes::head">
 </head>
 
 <body>
@@ -9,7 +10,7 @@
 
    <br />
    <div class="container-fluid" style="padding: 5% 20% ">
-      <form id="form" th:fragment="form" method="POST">
+      <form id="msgForm" th:fragment="form" method="POST">
          <h2 th:text=" 'Write a message to ' + ${userPage?.getName()}"></h2>
          Message
          <br />
@@ -17,8 +18,22 @@
          <br />
 
          <input class="input form-control" type="hidden" name="id" th:value="${userPage?.getId()}">
-         <input class="input form-control btn btn-primary" type="submit" value="Send" style="width: 10%; float: right;"></input>
+         <button class="input form-control btn btn-success" type="submit" value="Send" style="width: 10%; float: right;">Send</button>
       </form>
+   </div>
+
+   <div>
+      <script>
+         $(document).ready(function () {
+            $('#listingTable').DataTable();
+            $('.dataTables_length').addClass('bs-select');
+            $('.pagination').addClass('pg-teal');
+         });
+      </script>
+   </div>
+   <div th:replace="fragments/scripts::scripts">
+   </div>
+   <div th:replace="fragments/scripts::tableScripts">
    </div>
 </body>
 
