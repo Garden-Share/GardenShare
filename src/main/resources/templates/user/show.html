@@ -24,13 +24,16 @@
                 </div>
                 <br />
                 <div class="col-5">
+                    <h4 class="text-center">Listings</h4>
                     <table th:replace="listing/table::table" id="listingTable" class="table">
                     </table>
                 </div>
                 <div class="col-5">
+                    <h4 class="text-center">Reviews</h4>
                     <table th:replace="reviews/table::table"></table>
                     <br />
                     <br />
+                    <h4 class="text-center">Leave a review</h4>
                     <form th:replace="reviews/form::form"></form>
                 </div>
             </div>
