@@ -1,7 +1,10 @@
 package re.gardensha.gardenshare;
 
+import static org.junit.Assert.assertEquals;
+
+import java.sql.Timestamp;
+
 import org.junit.Test;
-import static org.junit.Assert.*;
 
 public class ListingTest{
     // These tests are by John Potz
@@ -10,9 +13,9 @@ public class ListingTest{
     @Test
     public void testListingInitialization(){
         String testFruitName = "Apples";
-        Listing listing = new Listing(testFruitName, 0.5f, "kg", 5, new Timestamp(), new Timestamp(), new User("Hi"));
+        Listing listing = new Listing(testFruitName, 0.5f, "kg", 5, "93410", new Timestamp(System.currentTimeMillis()), new Timestamp(System.currentTimeMillis()), new User("Hi"));
         
-        assertEquals(testFruitString, listing.getType());
+        assertEquals(testFruitName, listing.getType());
     }
 
 }
