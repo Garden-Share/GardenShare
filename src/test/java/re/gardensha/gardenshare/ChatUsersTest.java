@@ -4,7 +4,7 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
 public class ChatUsersTest {
-
+// These tests are by Wesley Benica
     @Test
     public void testChatSender(){
     	String testName = "sender";
