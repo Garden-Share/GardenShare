@@ -14,23 +14,31 @@ import org.springframework.test.context.junit4.SpringRunner;
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 public class ChatControllerTest {
-   // These tests are by Gilbert Han
+
+   // A test by Michael Curtis
 
    @LocalServerPort
    private int port;
 
    @Autowired
-   private TestRestTemplate restTemplate;
+   private TestRestTemplate template;
 
    @Autowired
    private ChatRepository chatRepo;
 
    @Test
-   // post with wrong parameters should not pass
-   public void postChat() throws Exception {
-      long listingCount = chatRepo.count();
-      this.restTemplate.postForObject("http://localhost:" + port + "/chat/compose/6", String.class, String.class);
-      assertThat(listingCount).isEqualTo(chatRepo.count());
+   public void testChat1() throws Exception {
+      long chatCount = chatRepo.count();
+      template.postForObject("http://localhost:" + port + "/chat/compose/-1", null, String.class);
+      assertThat(chatCount).isEqualTo(chatRepo.count());
+   }
+
+   // These are the test from Gilbert Han
+   @Test
+   public void testChatPost() throws Exception {
+      long count = chatRepo.count();
+      chatRepo.save(new Chat());
+      assertThat(count + 1).isEqualTo(chatRepo.count());
    }
 
    @Autowired

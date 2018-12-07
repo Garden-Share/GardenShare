@@ -6,9 +6,9 @@ import org.junit.runners.Suite;
 @RunWith(Suite.class)
 
 @Suite.SuiteClasses({
-    ChatController.class
+	ChatUsersTest.class
 })
 
-public class MichaelIntegrationTestSuite {
-
+public class WesleyUnitTestSuite {
+    // These tests are by Wesley Benica
 }
