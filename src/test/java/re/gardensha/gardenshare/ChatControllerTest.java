@@ -10,6 +10,8 @@ import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
@@ -38,7 +40,15 @@ public class ChatControllerTest {
    public void testChatPost() throws Exception {
       long count = chatRepo.count();
       chatRepo.save(new Chat());
+
+      // see if it correctly saves the chat room
       assertThat(count + 1).isEqualTo(chatRepo.count());
+      count = chatRepo.count();
+
+      MultiValueMap<String, Object> map = new LinkedMultiValueMap<String, Object>();
+      map.add("contet", "hey there");
+      template.postForObject("http://localhost:" + port + "/chat/compose/6", map, String.class);
+      assertThat(count).isEqualTo(chatRepo.count());
    }
 
    @Autowired
